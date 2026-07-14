@@ -1,0 +1,184 @@
+---
+import Base from '../layouts/Base.astro';
+import NewsEntry from '../components/NewsEntry.astro';
+import EventEntry from '../components/EventEntry.astro';
+import PaperEntry from '../components/PaperEntry.astro';
+import PersonCard from '../components/PersonCard.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { site, about, news, events, people, selectedPapers, splitEvents } from '../lib/content';
+import { href } from '../lib/site';
+
+const { upcoming } = splitEvents(events);
+const latestNews = news.slice(0, 4);
+const nextEvents = upcoming.slice(0, 2);
+const featuredPapers = selectedPapers.slice(0, 3);
+
+// Directors first; whoever the first group is, show a few faces on the homepage.
+const teaserPeople = people.groups.flatMap((g) => g.members).slice(0, 4);
+---
+
+<Base>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">{site.name}</p>
+      <h1>{site.tagline}</h1>
+      {
+        about.intro ? (
+          <p class="lede prose">{about.intro}</p>
+        ) : (
+          <div class="prose">
+            <Placeholder note="The center's introductory text has not been written yet. Add it as `intro` in src/data/about.yaml — it has to be the center's own wording." />
+          </div>
+        )
+      }
+      <p class="cta">
+        <a href={href('/about/')}>About the center</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Selected research</h2>
+      {
+        featuredPapers.length > 0 ? (
+          <div>
+            {featuredPapers.map((paper) => (
+              <PaperEntry paper={paper} showAbstract={false} />
+            ))}
+            <p class="more">
+              <a href={href('/research/')}>All research →</a>
+            </p>
+          </div>
+        ) : (
+          <Placeholder note="No papers yet. Add entries to src/data/publications.yaml or working-papers.yaml and set `selected: true` to feature them here." />
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <h2 class="section-title">Latest</h2>
+        {
+          latestNews.length > 0 ? (
+            <div>
+              {latestNews.map((item) => (
+                <NewsEntry item={item} />
+              ))}
+              <p class="more">
+                <a href={href('/news/')}>All news →</a>
+              </p>
+            </div>
+          ) : (
+            <Placeholder note="No news items yet. Add them to src/data/news.yaml." />
+          )
+        }
+      </div>
+
+      <div>
+        <h2 class="section-title">Upcoming</h2>
+        {
+          nextEvents.length > 0 ? (
+            <div>
+              {nextEvents.map((event) => (
+                <EventEntry event={event} />
+              ))}
+              <p class="more">
+                <a href={href('/events/')}>All events →</a>
+              </p>
+            </div>
+          ) : (
+            <Placeholder note="No upcoming events. Add them to src/data/events.yaml; past events move to the archive automatically." />
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">People</h2>
+      {
+        teaserPeople.length > 0 ? (
+          <div>
+            <div class="people-grid">
+              {teaserPeople.map((person) => (
+                <PersonCard person={person} />
+              ))}
+            </div>
+            <p class="more">
+              <a href={href('/people/')}>All people →</a>
+            </p>
+          </div>
+        ) : (
+          <Placeholder note="No members listed yet. Add them to src/data/people.yaml." />
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-block: var(--space-24) var(--space-16);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .eyebrow {
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero h1 {
+    max-width: 20ch;
+  }
+
+  .hero .lede {
+    margin-top: var(--space-6);
+  }
+
+  .cta {
+    margin-top: var(--space-8);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+  }
+
+  .people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: var(--space-8);
+  }
+
+  .more {
+    margin-top: var(--space-6);
+    font-size: var(--text-sm);
+  }
+
+  .more a {
+    text-decoration: none;
+  }
+
+  .more a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 720px) {
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+
+    .hero {
+      padding-block: var(--space-16) var(--space-12);
+    }
+  }
+</style>

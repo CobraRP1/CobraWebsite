@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PersonCard from '../components/PersonCard.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { people, site } from '../lib/content';
+
+// Only render groups that actually have members — an empty "Postdocs" heading
+// would imply the center has none, which we don't know.
+const populated = people.groups.filter((g) => g.members.length > 0);
+---
+
+<Base title="People" description={`Researchers of the ${site.name}.`}>
+  <PageHeader title="People" lede={people.intro} />
+
+  <section class="section">
+    <div class="container">
+      {
+        populated.length > 0 ? (
+          populated.map((group) => (
+            <div class="group">
+              <h2 class="section-title">{group.title}</h2>
+              <div class="people-grid">
+                {group.members.map((person) => (
+                  <PersonCard person={person} />
+                ))}
+              </div>
+            </div>
+          ))
+        ) : (
+          <Placeholder note="No members listed yet. Add them to src/data/people.yaml — the file already has the group structure (directors, faculty, postdocs, doctoral, affiliated); groups with no members are hidden." />
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .group + .group {
+    margin-top: var(--space-16);
+  }
+
+  .people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: var(--space-8);
+  }
+</style>

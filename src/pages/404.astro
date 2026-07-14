@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { href } from '../lib/site';
+---
+
+<Base title="Page not found" description="This page does not exist.">
+  <PageHeader title="Page not found" lede="This page does not exist, or it has moved." />
+
+  <section class="section">
+    <div class="container">
+      <p><a href={href('/')}>Back to the homepage →</a></p>
+    </div>
+  </section>
+</Base>

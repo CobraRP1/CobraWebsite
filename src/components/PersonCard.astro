@@ -1,0 +1,106 @@
+---
+import type { Person } from '../lib/types';
+import { href } from '../lib/site';
+
+interface Props {
+  person: Person;
+}
+
+const { person } = Astro.props;
+
+// No photo yet -> initials, never a stock image or a stranger's face.
+const initials = person.name
+  .split(/\s+/)
+  .filter(Boolean)
+  .map((part) => part[0])
+  .slice(0, 2)
+  .join('')
+  .toUpperCase();
+---
+
+<article class="person">
+  <div class="portrait">
+    {
+      person.photo ? (
+        <img src={href(person.photo)} alt={person.name} loading="lazy" width="120" height="120" />
+      ) : (
+        <span class="initials" aria-hidden="true">
+          {initials}
+        </span>
+      )
+    }
+  </div>
+
+  <div>
+    <h3>
+      {person.url ? <a href={person.url} rel="noopener">{person.name}</a> : person.name}
+    </h3>
+    {person.role && <p class="role muted">{person.role}</p>}
+    {person.affiliation && <p class="affiliation muted">{person.affiliation}</p>}
+    {person.bio && <p class="bio">{person.bio}</p>}
+    {
+      person.email && (
+        <p class="email">
+          <a href={`mailto:${person.email}`}>{person.email}</a>
+        </p>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .person {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .portrait {
+    flex: 0 0 auto;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--color-border);
+    display: grid;
+    place-items: center;
+  }
+
+  .portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .initials {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+  }
+
+  h3 {
+    font-size: var(--text-base);
+  }
+
+  h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  h3 a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .role,
+  .affiliation,
+  .email {
+    font-size: var(--text-sm);
+    line-height: 1.4;
+  }
+
+  .bio {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+  }
+</style>

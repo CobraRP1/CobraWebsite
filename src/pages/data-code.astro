@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { dataCode, site } from '../lib/content';
+---
+
+<Base title="Data & Code" description={`Datasets and code published by the ${site.name}.`}>
+  <PageHeader title="Data & Code" lede={dataCode.intro} />
+
+  <section class="section">
+    <div class="container">
+      {
+        dataCode.items.length > 0 ? (
+          <ul class="resources">
+            {dataCode.items.map((item) => (
+              <li>
+                {item.kind && <p class="kind muted">{item.kind}</p>}
+                <h3>
+                  {item.link ? (
+                    <a href={item.link} rel="noopener">
+                      {item.title}
+                    </a>
+                  ) : (
+                    item.title
+                  )}
+                </h3>
+                {item.description && <p class="description muted">{item.description}</p>}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <Placeholder note="No datasets or code published yet. Add them to src/data/data-code.yaml. Prefer a stable, citable home (DOI, Zenodo, OSF, GitHub) or self-host the file in public/assets/ — OneDrive and Dropbox links rot." />
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .resources li {
+    padding-block: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .kind {
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    margin-top: var(--space-1);
+  }
+
+  h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  h3 a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .description {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    max-width: var(--prose-width);
+  }
+</style>

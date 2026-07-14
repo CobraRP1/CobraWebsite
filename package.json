@@ -1,0 +1,28 @@
+{
+  "name": "cobra-website",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Website of the Mannheim Center for Corporate Behavior and Regulation Analysis (Cobra)",
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/source-serif-4": "^5.2.8",
+    "astro": "^5.16.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/js-yaml": "^4.0.9",
+    "typescript": "^5.9.3"
+  }
+}

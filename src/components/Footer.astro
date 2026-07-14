@@ -1,0 +1,124 @@
+---
+import { site } from '../lib/content';
+import { href } from '../lib/site';
+
+const year = new Date().getFullYear();
+
+const socialLabels: Record<string, string> = {
+  linkedin: 'LinkedIn',
+  x: 'X',
+  bluesky: 'Bluesky',
+  googleScholar: 'Google Scholar',
+  youtube: 'YouTube',
+};
+
+const socialLinks = Object.entries(site.social)
+  .filter(([, url]) => Boolean(url))
+  .map(([key, url]) => ({ label: socialLabels[key] ?? key, url: url as string }));
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-block">
+      <p class="footer-name">{site.name}</p>
+      {site.address && <p class="muted">{site.address}</p>}
+      {
+        site.email ? (
+          <p>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </p>
+        ) : (
+          /* TODO(Cobra): add a contact email to site.yaml. */
+          <p class="muted">Contact address to be added.</p>
+        )
+      }
+    </div>
+
+    <div class="footer-block">
+      <nav aria-label="Footer">
+        <ul>
+          {
+            site.nav.map((item) => (
+              <li>
+                <a href={href(item.path)}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-block">
+      {
+        socialLinks.length > 0 && (
+          <ul class="social">
+            {socialLinks.map((link) => (
+              <li>
+                <a href={link.url} rel="me noopener">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+      <ul class="legal">
+        <li><a href={href('/impressum/')}>Impressum</a></li>
+        <li><a href={href('/datenschutz/')}>Datenschutz</a></li>
+      </ul>
+      <p class="muted copyright">© {year} {site.shortName}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-24);
+    padding-block: var(--space-12);
+    font-size: var(--text-sm);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    max-width: 22rem;
+  }
+
+  .footer-block ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .footer-block a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .footer-block a:hover {
+    color: var(--color-text);
+    text-decoration: underline;
+  }
+
+  .legal {
+    margin-top: var(--space-4);
+  }
+
+  .copyright {
+    margin-top: var(--space-4);
+  }
+
+  @media (max-width: 720px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+import type { Paper } from '../lib/types';
+
+interface Props {
+  paper: Paper;
+  /** Show the abstract in a <details> disclosure. */
+  showAbstract?: boolean;
+}
+
+const { paper, showAbstract = true } = Astro.props;
+const authors = paper.authors?.join(', ') ?? '';
+const link = paper.link ?? (paper.doi ? `https://doi.org/${paper.doi}` : null);
+---
+
+<article class="paper">
+  <h3>
+    {link ? <a href={link} rel="noopener">{paper.title}</a> : paper.title}
+  </h3>
+
+  {authors && <p class="authors">{authors}</p>}
+
+  <p class="meta muted">
+    {paper.outlet}{paper.outlet && paper.year ? ', ' : ''}{paper.year}
+  </p>
+
+  {
+    showAbstract && paper.abstract && (
+      <details>
+        <summary>Abstract</summary>
+        <p class="abstract">{paper.abstract}</p>
+      </details>
+    )
+  }
+</article>
+
+<style>
+  .paper {
+    padding-block: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .paper h3 {
+    font-size: var(--text-lg);
+  }
+
+  .paper h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .paper h3 a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .authors {
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+  }
+
+  .meta {
+    font-size: var(--text-sm);
+  }
+
+  summary {
+    cursor: pointer;
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    margin-top: var(--space-3);
+  }
+
+  .abstract {
+    max-width: var(--prose-width);
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,17 @@
+# Partner institutions and funders, shown on /about/.
+#
+# TODO(Cobra): add the center's partners and funders. Funding statements in
+# particular are often contractually worded — copy the wording the funder
+# requires rather than rephrasing it.
+#
+# Logos go in public/assets/ and must be ones the center is licensed to display.
+#
+# partners:
+#   - name: Institution name
+#     url: https://...
+#     logo: /assets/partner-logo.svg   # null renders the name as text
+#     note: null                        # e.g. nature of the collaboration
+
+intro: null
+partners: []
+funders: []

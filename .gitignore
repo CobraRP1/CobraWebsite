@@ -1,0 +1,28 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment
+.env
+.env.production
+
+# Reference notes for the sibling site (marcelolbert.com). Kept locally as the
+# architectural reference for this repo, but NOT committed: it contains personal
+# contact details, registrar/DNS notes, and private file paths, and this repo is public.
+MarcelOlbert.md
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/

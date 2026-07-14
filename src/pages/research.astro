@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PaperEntry from '../components/PaperEntry.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { publications, workingPapers, site } from '../lib/content';
+
+const nothing = publications.length === 0 && workingPapers.length === 0;
+---
+
+<Base title="Research" description={`Publications and working papers of the ${site.name}.`}>
+  <PageHeader title="Research" />
+
+  {
+    nothing && (
+      <section class="section">
+        <div class="container">
+          <Placeholder note="No papers yet. Add entries to src/data/publications.yaml and src/data/working-papers.yaml, newest first. Abstracts must be copied verbatim from the publisher or SSRN — never paraphrased." />
+        </div>
+      </section>
+    )
+  }
+
+  {
+    publications.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Publications</h2>
+          {publications.map((paper) => (
+            <PaperEntry paper={paper} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    workingPapers.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Working papers</h2>
+          {workingPapers.map((paper) => (
+            <PaperEntry paper={paper} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Base>

@@ -1,0 +1,21 @@
+# Conferences, workshops, and seminar series hosted by the center.
+#
+# The page splits these into "Upcoming" and "Past" automatically by comparing
+# `date` to the build date — you do not maintain that split by hand. An entry
+# with `date: null` counts as past, so a malformed date can never fake an
+# upcoming event.
+#
+# TODO(Cobra): add the center's events, including the launch event if you want
+# it listed. Dates must be real — never approximate one.
+#
+# items:
+#   - date: 2026-09-15          # YYYY-MM-DD
+#     endDate: 2026-09-16       # null for single-day events
+#     title: Event title
+#     kind: Conference          # Conference | Workshop | Seminar | Lecture ...
+#     location: Mannheim
+#     description: >-
+#       One or two sentences.
+#     link: https://...
+
+items: []

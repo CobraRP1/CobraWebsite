@@ -1,0 +1,7 @@
+<!-- TODO(Cobra): placeholder favicon — a plain "C" in the placeholder accent color.
+     Replace with the official mark once corporate design assets are available. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Cobra">
+  <rect width="64" height="64" rx="8" fill="#2f4858"/>
+  <text x="32" y="45" font-family="Georgia, serif" font-size="40" font-weight="600"
+        fill="#fbfaf8" text-anchor="middle">C</text>
+</svg>

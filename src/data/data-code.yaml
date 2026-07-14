@@ -1,0 +1,17 @@
+# Datasets, replication packages, and tools published by the center.
+#
+# Prefer SELF-HOSTING files in public/assets/ over linking to OneDrive/Dropbox —
+# those links rot and break silently. Link out only to stable, citable homes
+# (a DOI, an OSF/Zenodo record, a GitHub repo).
+#
+# TODO(Cobra): add resources as the center publishes them.
+#
+# items:
+#   - title: Resource name
+#     description: >-
+#       What it is and who it's for.
+#     link: https://doi.org/...
+#     kind: Dataset            # Dataset | Code | Replication package | Tool
+
+intro: null
+items: []
