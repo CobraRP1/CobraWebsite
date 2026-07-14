@@ -1,0 +1,34 @@
+# People / members of the center.
+#
+# TODO(Cobra): add the real members. NOTHING here is pre-filled — names, roles,
+# and affiliations are exactly the kind of fact that must never be guessed.
+#
+# Group titles are free text; reorder or rename groups as the center's structure
+# requires. Photos go in public/assets/ and are referenced as /assets/name.jpg
+# (the href() helper adds the base path). `photo: null` renders initials instead.
+
+intro: null
+
+groups:
+  - title: Directors
+    members: []
+    # - name: Full Name
+    #   role: Director
+    #   affiliation: University of Mannheim
+    #   photo: /assets/full-name.jpg
+    #   url: https://...
+    #   email: name@uni-mannheim.de
+    #   bio: >-
+    #     One or two sentences.
+
+  - title: Faculty
+    members: []
+
+  - title: Postdoctoral researchers
+    members: []
+
+  - title: Doctoral researchers
+    members: []
+
+  - title: Affiliated researchers
+    members: []

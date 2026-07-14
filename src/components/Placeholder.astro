@@ -1,0 +1,17 @@
+---
+/**
+ * Visible marker for content that does not exist yet.
+ *
+ * The whole point: an empty section must LOOK empty to a visitor and to whoever
+ * is filling the site in. It must never look like finished content, and it must
+ * never be filled with plausible-sounding invented text.
+ */
+interface Props {
+  /** What is missing and who needs to supply it. */
+  note: string;
+}
+
+const { note } = Astro.props;
+---
+
+<p class="placeholder">{note}</p>

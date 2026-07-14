@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { legal, site } from '../lib/content';
+
+// Missing details render as a visible bracketed marker, never as invented text.
+const todo = (value: string | null, what: string) => value ?? `[${what} — TODO(Cobra)]`;
+---
+
+<Base title="Impressum" description={`Impressum — ${site.name}.`}>
+  <PageHeader title="Impressum" />
+
+  <section class="section">
+    <div class="container prose stack">
+      <Placeholder note="DRAFT — NOT LEGAL ADVICE. This text was drafted by Claude from a standard § 5 TMG / § 18 MStV structure and has not been reviewed by anyone qualified. Before launch: (1) check whether Cobra is already covered by the University of Mannheim's central Impressum — if the center is a university unit, linking to the university's page is often the correct answer; (2) if Cobra needs its own, fill in src/data/legal.yaml and have the text reviewed. Bracketed values below are missing facts, not content." />
+
+      <h2>Angaben gemäß § 5 TMG</h2>
+      <p>
+        {todo(legal.operator, 'Betreiber / verantwortliche Einrichtung')}<br />
+        {todo(legal.address, 'Ladungsfähige Anschrift')}
+      </p>
+
+      <h2>Vertreten durch</h2>
+      <p>{todo(legal.represented_by, 'Vertretungsberechtigte Person')}</p>
+
+      <h2>Kontakt</h2>
+      <p>
+        E-Mail: {todo(legal.email, 'E-Mail-Adresse')}<br />
+        Telefon: {todo(legal.phone, 'Telefonnummer')}
+      </p>
+
+      <h2>Umsatzsteuer-Identifikationsnummer</h2>
+      <p>
+        Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:{' '}
+        {todo(legal.vat_id, 'USt-IdNr., falls zutreffend')}
+      </p>
+
+      <h2>Aufsichtsbehörde</h2>
+      <p>{todo(legal.supervisory_authority, 'Zuständige Aufsichtsbehörde')}</p>
+
+      <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+      <p>{todo(legal.responsible_for_content, 'Inhaltlich verantwortliche Person und Anschrift')}</p>
+
+      <h2>Haftung für Inhalte</h2>
+      <p>
+        Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten
+        nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als
+        Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde
+        Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
+        Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von
+        Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine
+        diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten
+        Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden
+        wir diese Inhalte umgehend entfernen.
+      </p>
+
+      <h2>Haftung für Links</h2>
+      <p>
+        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen
+        Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr
+        übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder
+        Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der
+        Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum
+        Zeitpunkt der Verlinkung nicht erkennbar. Bei Bekanntwerden von Rechtsverletzungen werden
+        wir derartige Links umgehend entfernen.
+      </p>
+
+      <h2>Urheberrecht</h2>
+      <p>
+        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen
+        dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Downloads
+        und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  h2 {
+    font-size: var(--text-lg);
+    margin-top: var(--space-8);
+  }
+
+  p {
+    font-size: var(--text-sm);
+  }
+</style>

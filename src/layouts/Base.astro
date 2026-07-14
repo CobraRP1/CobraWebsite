@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../lib/content';
+import { href } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const pageTitle = title ? `${title} — ${site.shortName}` : `${site.name} (${site.shortName})`;
+const pageDescription = description ?? site.description;
+
+// Astro.site is the origin from astro.config.mjs; Astro.url is the current page.
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const ogImage = site.ogImage ? new URL(href(site.ogImage), canonical) : null;
+
+// schema.org Organization — Cobra is an organization, not a person.
+// Fields we don't know are omitted entirely rather than guessed.
+const jsonLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'ResearchOrganization',
+  name: site.name,
+  alternateName: site.shortName,
+  url: site.url,
+  description: site.description,
+};
+if (site.email) jsonLd.email = site.email;
+if (site.logo) jsonLd.logo = new URL(href(site.logo), canonical).toString();
+if (site.parentOrganization) {
+  jsonLd.parentOrganization = { '@type': 'Organization', name: site.parentOrganization };
+}
+const sameAs = Object.values(site.social).filter((v): v is string => Boolean(v));
+if (sameAs.length > 0) jsonLd.sameAs = sameAs;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonical.toString()} />
+    <link rel="icon" href={href('/favicon.svg')} type="image/svg+xml" />
+    <link rel="sitemap" href={href('/sitemap-index.xml')} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical.toString()} />
+    <meta property="og:site_name" content={site.name} />
+    {ogImage && <meta property="og:image" content={ogImage.toString()} />}
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+
+    {
+      /* Analytics stays entirely absent while site.yaml has `goatcounter: null` —
+         no third-party request, nothing to disclose. Activating it requires a
+         GoatCounter section in the Datenschutzerklärung in the same commit. */
+      site.goatcounter && (
+        <script
+          is:inline
+          data-goatcounter={`https://${site.goatcounter}.goatcounter.com/count`}
+          async
+          src="//gc.zgo.at/count.js"
+        />
+      )
+    }
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <style>
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: var(--color-surface);
+        padding: var(--space-3) var(--space-4);
+        z-index: 10;
+      }
+
+      .skip-link:focus {
+        left: var(--space-4);
+        top: var(--space-4);
+      }
+    </style>
+  </body>
+</html>

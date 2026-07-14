@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import EventEntry from '../components/EventEntry.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { events, splitEvents, site } from '../lib/content';
+
+// Split against the BUILD date. A site that isn't rebuilt for months will keep
+// showing a past event as upcoming — the deploy runs on every push, and a
+// scheduled rebuild can be added later if that ever bites.
+const { upcoming, past } = splitEvents(events);
+---
+
+<Base title="Events" description={`Conferences and workshops hosted by the ${site.name}.`}>
+  <PageHeader title="Events" />
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Upcoming</h2>
+      {
+        upcoming.length > 0 ? (
+          upcoming.map((event) => <EventEntry event={event} />)
+        ) : (
+          <Placeholder note="No upcoming events. Add them to src/data/events.yaml — entries move from Upcoming to Past automatically once their date passes." />
+        )
+      }
+    </div>
+  </section>
+
+  {
+    past.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Past</h2>
+          {past.map((event) => (
+            <EventEntry event={event} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Base>

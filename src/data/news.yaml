@@ -1,0 +1,15 @@
+# Homepage "Latest" + the /news/ page. NEWEST ENTRIES ON TOP.
+#
+# Keep it short — 4–6 live items is the sweet spot; prune old ones rather than
+# letting the list grow. Dates are YYYY-MM (or YYYY-MM-DD if the day matters).
+# TODO(Cobra): add the center's first news items. Never guess a date — if you're
+# unsure when something happened, leave `date: null` and it renders undated.
+#
+# items:
+#   - date: 2026-07
+#     title: Short headline
+#     body: >-
+#       One or two sentences.
+#     link: https://...
+
+items: []

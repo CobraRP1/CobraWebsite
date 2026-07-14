@@ -1,0 +1,54 @@
+---
+import type { NewsItem } from '../lib/types';
+import { formatDate } from '../lib/content';
+
+interface Props {
+  item: NewsItem;
+}
+
+const { item } = Astro.props;
+const date = formatDate(item.date);
+---
+
+<article class="news-item">
+  {date && <p class="date muted">{date}</p>}
+  <h3>
+    {item.link ? <a href={item.link} rel="noopener">{item.title}</a> : item.title}
+  </h3>
+  {item.body && <p class="body">{item.body}</p>}
+</article>
+
+<style>
+  .news-item {
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .date {
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: var(--text-base);
+    margin-top: var(--space-1);
+  }
+
+  h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  h3 a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .body {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    max-width: var(--prose-width);
+  }
+</style>

@@ -1,0 +1,27 @@
+# About page.
+#
+# TODO(Cobra): everything here is empty on purpose. Claude will not draft a
+# mission statement for a research center out of thin air — the wording has to
+# come from the center. Fill `intro` and `mission` in, then add sections as needed.
+#
+# Each field is plain text (or Markdown-ish prose); `null` renders a visible
+# "Placeholder" box on the page so an empty section is obvious to visitors and
+# can never be mistaken for finished content.
+
+intro: null
+# Example once you have the text:
+# intro: >-
+#   Cobra brings together researchers working on ...
+
+mission: null
+
+# Add as many as you like; they render in order as sections on /about/.
+sections: []
+# Example:
+# sections:
+#   - title: Research agenda
+#     body: >-
+#       ...
+#   - title: Structure
+#     body: >-
+#       ...

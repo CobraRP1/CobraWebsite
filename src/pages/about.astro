@@ -1,0 +1,131 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { about, partners, site } from '../lib/content';
+import { href } from '../lib/site';
+
+const hasPartners = partners.partners.length > 0;
+const hasFunders = partners.funders.length > 0;
+---
+
+<Base title="About" description={`About ${site.name}.`}>
+  <PageHeader title="About" lede={about.intro} />
+
+  <section class="section">
+    <div class="container prose stack">
+      {
+        !about.intro && (
+          <Placeholder note="Introductory text missing — add `intro` in src/data/about.yaml." />
+        )
+      }
+
+      {
+        about.mission ? (
+          <>
+            <h2>Mission</h2>
+            <p>{about.mission}</p>
+          </>
+        ) : (
+          <Placeholder note="Mission statement missing — add `mission` in src/data/about.yaml. This has to be the center's own wording." />
+        )
+      }
+
+      {
+        about.sections.map((section) => (
+          <>
+            <h2>{section.title}</h2>
+            <p>{section.body}</p>
+          </>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Partners &amp; funding</h2>
+
+      {partners.intro && <p class="prose">{partners.intro}</p>}
+
+      {
+        !hasPartners && !hasFunders && (
+          <Placeholder note="No partners or funders listed yet — add them in src/data/partners.yaml. Copy funding statements in the wording the funder requires." />
+        )
+      }
+
+      {
+        hasPartners && (
+          <div class="group">
+            <h3>Partners</h3>
+            <ul class="org-list">
+              {partners.partners.map((p) => (
+                <li>
+                  {p.logo ? (
+                    <img src={href(p.logo)} alt={p.name} loading="lazy" />
+                  ) : p.url ? (
+                    <a href={p.url} rel="noopener">
+                      {p.name}
+                    </a>
+                  ) : (
+                    <span>{p.name}</span>
+                  )}
+                  {p.note && <span class="note muted">{p.note}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      {
+        hasFunders && (
+          <div class="group">
+            <h3>Funding</h3>
+            <ul class="org-list">
+              {partners.funders.map((f) => (
+                <li>
+                  {f.url ? (
+                    <a href={f.url} rel="noopener">
+                      {f.name}
+                    </a>
+                  ) : (
+                    <span>{f.name}</span>
+                  )}
+                  {f.note && <span class="note muted">{f.note}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .group + .group {
+    margin-top: var(--space-8);
+  }
+
+  .group h3 {
+    margin-bottom: var(--space-4);
+  }
+
+  .org-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .org-list img {
+    max-height: 48px;
+    width: auto;
+  }
+
+  .note {
+    font-size: var(--text-sm);
+    margin-left: var(--space-2);
+  }
+</style>

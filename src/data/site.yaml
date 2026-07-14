@@ -1,0 +1,64 @@
+# Global site settings.
+#
+# HARD RULE: nothing on this site may be invented. Every field below is either a
+# fact we were given, or `null` / a bracketed placeholder marked TODO(Cobra).
+# A null renders as nothing (or as a visible placeholder box) — never as a guess.
+
+name: Mannheim Center for Corporate Behavior and Regulation Analysis
+shortName: Cobra
+
+# TODO(Cobra): supply the center's real tagline. This is a neutral stand-in and
+# deliberately says nothing specific about the center's agenda.
+tagline: Research center for corporate behavior and regulation analysis
+
+# TODO(Cobra): supply a one-paragraph description. Used for the meta description
+# and OG tags, so it should be a real sentence about the center, not a slogan.
+description: >-
+  The Mannheim Center for Corporate Behavior and Regulation Analysis (Cobra).
+
+# Public URL of the site. Update at the custom-domain cutover (see WORKFLOWS.md).
+url: https://cobrarp1.github.io/CobraWebsite
+
+# TODO(Cobra): contact address for the center.
+email: null
+address: null
+
+# TODO(Cobra): is Cobra formally a unit of the University of Mannheim, of
+# Mannheim Business School, or independent? This drives the JSON-LD
+# parentOrganization AND who is legally responsible in the Impressum, so it must
+# not be guessed. Example once known: University of Mannheim
+parentOrganization: null
+
+# TODO(Cobra): drop the official logo into public/assets/ and point to it, e.g.
+# /assets/cobra-logo.svg — until then the header renders a text wordmark.
+logo: null
+
+# TODO(Cobra): a dedicated 1200x630 share image. Until then, pages share with no image.
+ogImage: null
+
+nav:
+  - label: About
+    path: /about/
+  - label: People
+    path: /people/
+  - label: Research
+    path: /research/
+  - label: Events
+    path: /events/
+  - label: News
+    path: /news/
+  - label: Data & Code
+    path: /data-code/
+
+# TODO(Cobra): add the center's accounts as they are created. Null slots render nothing.
+social:
+  linkedin: null
+  x: null
+  bluesky: null
+  googleScholar: null
+  youtube: null
+
+# GoatCounter analytics. Keep null to load NO analytics at all.
+# When activating: sign up at goatcounter.com, put the site code here, AND add a
+# GoatCounter section to the Datenschutzerklärung in the SAME commit.
+goatcounter: null

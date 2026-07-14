@@ -1,0 +1,16 @@
+# Working papers. NEWEST ENTRIES ON TOP.
+#
+# Same rules as publications.yaml: abstracts VERBATIM from SSRN/the working-paper
+# PDF, or null. `outlet` here is the series (e.g. an SSRN working paper series).
+#
+# items:
+#   - title: Working paper title
+#     authors: [Author One, Author Two]
+#     outlet: SSRN Working Paper
+#     year: 2026
+#     abstract: null
+#     link: https://ssrn.com/abstract=...
+#     doi: null
+#     selected: false
+
+items: []

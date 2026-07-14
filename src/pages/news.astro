@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import NewsEntry from '../components/NewsEntry.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { news, site } from '../lib/content';
+---
+
+<Base title="News" description={`News from the ${site.name}.`}>
+  <PageHeader title="News" />
+
+  <section class="section">
+    <div class="container">
+      {
+        news.length > 0 ? (
+          news.map((item) => <NewsEntry item={item} />)
+        ) : (
+          <Placeholder note="No news yet. Add items to src/data/news.yaml, newest on top. Never guess a date — leave it null and the item renders undated." />
+        )
+      }
+    </div>
+  </section>
+</Base>

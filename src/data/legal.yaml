@@ -1,0 +1,35 @@
+# Impressum + Datenschutzerklärung details.
+#
+# ⚠️ READ THIS BEFORE LAUNCH.
+#
+# Every value below is null, and the /impressum/ and /datenschutz/ pages render
+# visible bracketed placeholders for the missing ones. That is intentional: a
+# German Impressum with invented details is worse than no Impressum.
+#
+# TWO THINGS MUST HAPPEN BEFORE THE SITE GOES PUBLIC:
+#
+# 1. Decide whether Cobra is covered by the University of Mannheim's / Mannheim
+#    Business School's central Impressum and Datenschutzerklärung. If the center
+#    is a unit of the university, the correct answer is often to LINK to the
+#    university's pages rather than publish your own. Ask the university's legal
+#    or communications office — do not decide this from a template.
+#
+# 2. If Cobra does need its own, fill these in and have the text reviewed by
+#    someone qualified. The page text is a Claude-written draft. It is NOT legal
+#    advice and nobody should launch on it unreviewed.
+
+operator: null                   # Legal entity responsible for the site
+represented_by: null             # Vertreten durch (e.g. the center's director)
+address: null                    # Ladungsfähige Anschrift — a real postal address
+email: null
+phone: null
+vat_id: null                     # USt-IdNr. per § 27a UStG, if applicable
+supervisory_authority: null      # Aufsichtsbehörde, for public bodies
+responsible_for_content: null    # Inhaltlich verantwortlich
+data_protection_officer: null    # Datenschutzbeauftragte:r — usually the university's
+
+# Factual, and true as long as we deploy to GitHub Pages. Update if hosting moves.
+hosting_note: >-
+  This site is hosted on GitHub Pages, a service of GitHub, Inc., 88 Colin P. Kelly Jr.
+  Street, San Francisco, CA 94107, USA. When you visit the site, GitHub processes your
+  IP address in server logs in order to deliver the pages to you.
