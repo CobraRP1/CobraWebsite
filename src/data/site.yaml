@@ -83,7 +83,9 @@ social:
   googleScholar: null
   youtube: null
 
-# GoatCounter analytics. Keep null to load NO analytics at all.
-# When activating: sign up at goatcounter.com, put the site code here, AND add a
-# GoatCounter section to the Datenschutzerklärung in the SAME commit.
-goatcounter: null
+# GoatCounter analytics (endpoint: <code>.goatcounter.com). Set to null to load
+# NO analytics at all. The script itself is SELF-HOSTED at public/count.js — the
+# only external request is the count ping to the endpoint below, which is
+# disclosed in /datenschutz/. If this code ever changes, keep the
+# Datenschutzerklärung in sync IN THE SAME COMMIT.
+goatcounter: cobra-mannheim

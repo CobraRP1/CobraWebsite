@@ -156,15 +156,25 @@ top. To adopt the real Uni Mannheim / MBS corporate design:
 
 No component changes are needed; nothing hardcodes a color.
 
-### Turn on analytics (GoatCounter)
+### Analytics (GoatCounter) — ACTIVE
 
-1. Sign up at goatcounter.com, get your site code.
-2. Set `goatcounter: yourcode` in `site.yaml`.
-3. **In the same commit**, add a GoatCounter section to `src/pages/datenschutz.astro` (there's a
-   TODO comment marking the spot). GoatCounter sets no cookies and stores no personal data, but
-   it still has to be disclosed.
+Analytics is on: `goatcounter: cobra-mannheim` in `site.yaml`. Stats live at
+**https://cobra-mannheim.goatcounter.com** (log in with the center's GoatCounter account;
+the site must exist there as an "additional site" with exactly that code).
 
-While `goatcounter: null`, the site loads no analytics script at all.
+How it's wired, and the rules:
+
+- The counting script is **self-hosted** at `public/count.js` (downloaded from
+  gc.zgo.at, ISC license). Don't replace it with the gc.zgo.at URL — the whole point is
+  that the count ping to `cobra-mannheim.goatcounter.com` stays the site's only external
+  request. To update the script occasionally: `curl https://gc.zgo.at/count.js -o public/count.js`.
+- The GoatCounter section in `src/pages/datenschutz.astro` describes exactly this setup.
+  **Any analytics change (off, new code, new provider) must update that page in the same
+  commit.**
+- To switch analytics off: set `goatcounter: null` in `site.yaml` AND replace the
+  GoatCounter section in the Datenschutzerklärung — same commit.
+- GoatCounter ignores visits from localhost by default, so `npm run dev` won't pollute
+  the stats.
 
 ### Move to a custom domain
 

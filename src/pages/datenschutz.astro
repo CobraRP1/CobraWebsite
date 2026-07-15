@@ -12,7 +12,7 @@ const todo = (value: string | null, what: string) => value ?? `[${what} — TODO
 
   <section class="section">
     <div class="container prose stack">
-      <Placeholder note="DRAFT — NOT LEGAL ADVICE. Drafted by Claude and unreviewed. It describes what this site ACTUALLY does today: a static site on GitHub Pages, self-hosted fonts, no cookies, no analytics, no third-party requests. If any of that changes — above all switching GoatCounter on in site.yaml — this page must be updated in the SAME commit. Before launch, check whether the University of Mannheim's central Datenschutzerklärung covers Cobra, and have this reviewed." />
+      <Placeholder note="DRAFT — NOT LEGAL ADVICE. Drafted by Claude and unreviewed. It describes what this site ACTUALLY does today: a static site on GitHub Pages, self-hosted fonts, no cookies, and cookie-less GoatCounter analytics (self-hosted script; page views are reported to goatcounter.com). If the site's behavior changes, this page must be updated in the SAME commit. Before launch, check whether the University of Mannheim's central Datenschutzerklärung covers Cobra, and have this reviewed." />
 
       <h2>Verantwortliche Stelle</h2>
       <p>
@@ -45,15 +45,28 @@ const todo = (value: string | null, what: string) => value ?? `[${what} — TODO
         dieser Seite werden dadurch keine Daten an Dritte übertragen.
       </p>
 
-      <h2>Analyse-Werkzeuge</h2>
+      <h2>Webanalyse (GoatCounter)</h2>
       <p>
-        Diese Website verwendet derzeit <strong>keine Analyse- oder Tracking-Werkzeuge</strong>.
+        Diese Website verwendet <strong>GoatCounter</strong> (goatcounter.com), ein
+        datenschutzfreundliches Werkzeug zur Reichweitenmessung. GoatCounter setzt
+        <strong>keine Cookies</strong> und legt keine Nutzerprofile an. Das Zählskript wird
+        lokal von diesem Server ausgeliefert; beim Seitenaufruf wird ein Zählaufruf an
+        goatcounter.com übermittelt. Dabei werden technische Angaben verarbeitet, wie die
+        aufgerufene Seite, die verweisende Seite (Referrer), Browsertyp und Betriebssystem
+        (User-Agent), Bildschirmgröße, Land (abgeleitet aus der IP-Adresse) sowie die
+        IP-Adresse. Die IP-Adresse wird von GoatCounter nach eigenen Angaben nicht
+        gespeichert, sondern nur transient zur Verarbeitung des Zählaufrufs genutzt; die
+        gespeicherten Statistiken enthalten keine personenbezogenen Daten. Näheres in der
+        Datenschutzerklärung von GoatCounter:{' '}
+        <a href="https://www.goatcounter.com/help/privacy" rel="noopener">
+          goatcounter.com/help/privacy
+        </a>
+        .
       </p>
-      <!--
-        TODO(Cobra): Wird GoatCounter in site.yaml aktiviert, MUSS dieser Abschnitt im selben
-        Commit ersetzt werden: GoatCounter, keine Cookies, keine personenbezogene Speicherung,
-        Rechtsgrundlage Art. 6 Abs. 1 lit. f DSGVO, Anbieter und Serverstandort nennen.
-      -->
+      <p>
+        Rechtsgrundlage ist unser berechtigtes Interesse an einer datensparsamen
+        Reichweitenmessung dieser Website (Art. 6 Abs. 1 lit. f DSGVO).
+      </p>
 
       <h2>Ihre Rechte</h2>
       <p>
