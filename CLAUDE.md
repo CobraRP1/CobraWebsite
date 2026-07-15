@@ -64,16 +64,20 @@ About and News sit in `secondaryNav` (footer only); their content also feeds the
   not abstracts and must not be presented as such.
 - An unknown value is `null`, not a plausible guess. Nulls render as nothing or as a visible
   `<Placeholder>` box. Everything unverified carries a `TODO(Cobra)` comment in the YAML.
-- **No third-party requests, ever** (GDPR; German institutional audience). Fonts self-hosted
-  via fontsource. No Google Fonts, no CDNs, **no YouTube iframes — recordings are outbound
-  links only**. All old-site images/files were downloaded and self-hosted; never hotlink the
-  MBS server. Verify after changes: build, then grep `dist/` for external hosts (WORKFLOWS.md).
+- **No third-party requests** (GDPR; German institutional audience) — the sole exception is
+  the disclosed GoatCounter count ping (see Analytics below). Fonts self-hosted via fontsource.
+  No Google Fonts, no CDNs, **no YouTube iframes — recordings are outbound links only**. All
+  old-site images/files were downloaded and self-hosted; never hotlink the MBS server. Verify
+  after changes: build, then grep `dist/` for external hosts (WORKFLOWS.md).
 - **Design tokens live only in `src/styles/global.css`.** Current palette/fonts are NEUTRAL
   PLACEHOLDERS, not the official Uni Mannheim / MBS corporate design.
 - MBS branding (logo, AACSB/EQUIS/AMBA/LEA accreditation marks) was deliberately **not**
   migrated — those marks belong to MBS and must not appear on a non-MBS site.
-- Analytics (GoatCounter) wired but **off** while `goatcounter: null`. Switching it on requires
-  a GoatCounter section in `/datenschutz/` **in the same commit**.
+- Analytics: **GoatCounter is ON** (`goatcounter: cobra-mannheim` in site.yaml, endpoint
+  `cobra-mannheim.goatcounter.com`). The script is **self-hosted** at `public/count.js` — do
+  not switch it back to `gc.zgo.at`. The count ping is the site's ONLY external request and is
+  disclosed in `/datenschutz/`; any analytics change must keep that page in sync **in the same
+  commit**. Setting `goatcounter: null` turns it off entirely (then update /datenschutz/ too).
 - Impressum/Datenschutzerklärung are **unreviewed Claude drafts, not legal advice**.
 
 ## Open questions (blocking a public launch)
@@ -89,7 +93,8 @@ About and News sit in `secondaryNav` (footer only); their content also feeds the
 4. **Legal pages** — is COBRA covered by the university's/MBS's central Impressum &
    Datenschutzerklärung? "Based at Mannheim Business School" (old site) is not a statement of
    legal responsibility.
-5. **Domain** — undecided. Until then the site serves from the sub-path above.
+5. **Domain** — **cobra-mannheim.com is reserved** (per the center, July 2026) but not yet
+   pointed at the site; cutover steps in WORKFLOWS.md. Until then the sub-path above serves.
 6. **Media item dates** — the old site gives none for the four "In the News" items.
 7. **Summer School dates** — "July 2026, fully booked" per old site; exact dates unknown
    (`upcoming: true` + `dateText` in events.yaml until known — likely already past, then flip).

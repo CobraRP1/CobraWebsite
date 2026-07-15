@@ -60,15 +60,16 @@ if (sameAs.length > 0) jsonLd.sameAs = sameAs;
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 
     {
-      /* Analytics stays entirely absent while site.yaml has `goatcounter: null` —
-         no third-party request, nothing to disclose. Activating it requires a
-         GoatCounter section in the Datenschutzerklärung in the same commit. */
+      /* GoatCounter analytics. The script is SELF-HOSTED (public/count.js) so the
+         only external request is the count ping to *.goatcounter.com — disclosed
+         in /datenschutz/. Absent entirely while site.yaml has `goatcounter: null`.
+         Any change here must keep the Datenschutzerklärung in sync (same commit). */
       site.goatcounter && (
         <script
           is:inline
           data-goatcounter={`https://${site.goatcounter}.goatcounter.com/count`}
           async
-          src="//gc.zgo.at/count.js"
+          src={href('/count.js')}
         />
       )
     }
