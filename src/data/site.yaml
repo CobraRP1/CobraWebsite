@@ -1,58 +1,83 @@
 # Global site settings.
 #
 # HARD RULE: nothing on this site may be invented. Every field below is either a
-# fact we were given, or `null` / a bracketed placeholder marked TODO(Cobra).
-# A null renders as nothing (or as a visible placeholder box) — never as a guess.
+# fact taken from the center's old website
+# (mannheim-business-school.com/de/the-mannheim-experience/faculty-research/cobra-…),
+# supplied by the center, or `null` with a TODO(Cobra).
 
 name: Mannheim Center for Corporate Behavior and Regulation Analysis
-shortName: Cobra
+shortName: COBRA
 
-# TODO(Cobra): supply the center's real tagline. This is a neutral stand-in and
-# deliberately says nothing specific about the center's agenda.
-tagline: Research center for corporate behavior and regulation analysis
-
-# TODO(Cobra): supply a one-paragraph description. Used for the meta description
-# and OG tags, so it should be a real sentence about the center, not a slogan.
+# Verbatim from the old site's homepage hero.
+tagline: How Policy Shapes Business – and Why it Matters
 description: >-
-  The Mannheim Center for Corporate Behavior and Regulation Analysis (Cobra).
+  We study the real-world effects of regulation and public policy on businesses,
+  markets, and society.
 
 # Public URL of the site. Update at the custom-domain cutover (see WORKFLOWS.md).
 url: https://cobrarp1.github.io/CobraWebsite
 
-# TODO(Cobra): contact address for the center.
+# TODO(Cobra): the old site prints cobra@mannheim-business.school.com — that domain
+# has NO mail server (no MX record), so the printed address cannot receive mail; it
+# looks like a typo for cobra@mannheim-business-school.com. Confirm the real address
+# and fill it in. Until then, null (renders a visible "contact to be added" note).
 email: null
 address: null
 
-# TODO(Cobra): is Cobra formally a unit of the University of Mannheim, of
-# Mannheim Business School, or independent? This drives the JSON-LD
-# parentOrganization AND who is legally responsible in the Impressum, so it must
-# not be guessed. Example once known: University of Mannheim
-parentOrganization: null
+# Per the old site: "COBRA … is based at Mannheim Business School".
+# (Who is LEGALLY responsible for this website is a separate, still-open question —
+# see the Impressum notes in legal.yaml.)
+parentOrganization: Mannheim Business School
 
-# TODO(Cobra): drop the official logo into public/assets/ and point to it, e.g.
-# /assets/cobra-logo.svg — until then the header renders a text wordmark.
+# TODO(Cobra): official logo not yet available (needs CD assets); text wordmark
+# renders until this points at a file in public/assets/.
 logo: null
 
 # TODO(Cobra): a dedicated 1200x630 share image. Until then, pages share with no image.
 ogImage: null
 
+# The 7 sections, matching the old site's "Explore COBRA" order exactly.
+# `blurb` = the tile text from the old homepage (verbatim); `image` = the migrated
+# tile image. Both feed the homepage "Explore" grid.
 nav:
-  - label: About
-    path: /about/
-  - label: People
-    path: /people/
+  - label: Data & Tools
+    path: /data-tools/
+    blurb: Find dashboards and data access points here.
+    image: /assets/section-data-tools.jpg
   - label: Research
     path: /research/
+    blurb: Explore our research, academic programs, publications and early-career opportunities.
+    image: /assets/section-research.jpg
+  - label: Policy
+    path: /policy/
+    blurb: Discover our policy insights and opportunities to discuss emerging policy issues with us.
+    image: /assets/section-policy.jpg
+  - label: Business
+    path: /business/
+    blurb: Find out how we collaborate with businesses.
+    image: /assets/section-business.jpg
+  - label: Media
+    path: /media/
+    blurb: Find media coverage, expert perspectives, and accessible research-driven analysis here.
+    image: /assets/section-media.jpg
   - label: Events
     path: /events/
+    blurb: Upcoming conferences, workshops, policy events and PhD events.
+    image: /assets/section-events.jpg
+  - label: People
+    path: /people/
+    blurb: Meet the people behind COBRA, our researchers, advisors, interns, and core team.
+    image: /assets/section-people.jpg
+
+# Pages outside the 7 main sections; rendered in the footer.
+secondaryNav:
+  - label: About
+    path: /about/
   - label: News
     path: /news/
-  - label: Data & Code
-    path: /data-code/
 
-# TODO(Cobra): add the center's accounts as they are created. Null slots render nothing.
 social:
-  linkedin: null
+  linkedin: https://www.linkedin.com/company/cobra-mannheim/
   x: null
   bluesky: null
   googleScholar: null

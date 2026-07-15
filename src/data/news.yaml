@@ -1,15 +1,54 @@
-# Homepage "Latest" + the /news/ page. NEWEST ENTRIES ON TOP.
-#
-# Keep it short — 4–6 live items is the sweet spot; prune old ones rather than
-# letting the list grow. Dates are YYYY-MM (or YYYY-MM-DD if the day matters).
-# TODO(Cobra): add the center's first news items. Never guess a date — if you're
-# unsure when something happened, leave `date: null` and it renders undated.
-#
-# items:
-#   - date: 2026-07
-#     title: Short headline
-#     body: >-
-#       One or two sentences.
-#     link: https://...
+# "In the Spotlight" — homepage band + /news/ page. NEWEST ENTRIES ON TOP.
+# Items migrated verbatim from the old site's "In the Spotlight" section.
+# Keep 4–6 live items; prune old ones rather than letting the list grow.
 
-items: []
+items:
+  - date: 2026-06-09
+    title: COBRA Soft Launch – June 9, 2026
+    body: >-
+      A first look back at the event. Faculty, researchers, and members of the MBS
+      community gathered to mark the official start of COBRA and its research agenda on
+      regulation, taxation, and corporate behavior. More updates on projects and events
+      to follow.
+    link: null
+    images:
+      - /assets/softlaunch-01.jpg
+      - /assets/softlaunch-02.jpg
+      - /assets/softlaunch-03.jpg
+      - /assets/softlaunch-04.jpg
+      - /assets/softlaunch-05.jpg
+      - /assets/softlaunch-06.jpg
+      - /assets/softlaunch-07.jpg
+      - /assets/softlaunch-08.jpg
+      - /assets/softlaunch-09.jpg
+    credit: Photos by Sarah Hähnle
+
+  - date: 2026-05 # sessions took place May 20 and May 26, 2026
+    title: AI & Code Clinic for Research and Teaching
+    body: >-
+      In May, COBRA hosted the first edition of its AI and Code Clinic for Research and
+      Teaching, two workshops designed for faculty and researchers interested in the use
+      of AI in empirical research. Across two sessions, participants explored how AI
+      agents such as Claude Code can support the research process, discussed practical
+      applications and common pitfalls, and were introduced to new data infrastructure
+      for the research community. The series offered a hands-on forum for learning,
+      exchange, and experimentation, reflecting COBRA's commitment to advancing
+      innovative and methodologically rigorous research.
+    link: /events/
+    images: []
+    credit: null
+
+  - date: null # TODO(Cobra): the old site gives no date; the call was in March 2026
+    title: COBRA Backs Nine New Projects
+    body: >-
+      Following the launch of its first Call for Proposals in March, COBRA is now
+      supporting nine new research projects exploring how economic policy and regulation
+      shape business, markets, and society. The funded projects reflect COBRA's ambition
+      to advance innovative, high-impact research with clear relevance for policy,
+      business, and public debate. Support will enable researchers to access data,
+      collaborate with external research assistants, and take part in conferences,
+      fieldwork, and research visits. Together, these projects offer an early glimpse of
+      the research energy and real-world relevance at the heart of COBRA.
+    link: null
+    images: []
+    credit: null

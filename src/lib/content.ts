@@ -8,12 +8,16 @@
 import yaml from 'js-yaml';
 import type {
   About,
-  DataCode,
+  BusinessContent,
+  DataTools,
   EventItem,
+  MediaContent,
   NewsItem,
   Partners,
   Paper,
   People,
+  PolicyContent,
+  ResearchContent,
   SiteConfig,
   Legal,
 } from './types';
@@ -32,7 +36,9 @@ function load<T>(name: string): T {
       `Missing content file src/data/${name}.yaml (found: ${Object.keys(files).join(', ')})`,
     );
   }
-  return yaml.load(raw) as T;
+  // CORE_SCHEMA keeps dates as plain "YYYY-MM-DD" strings; the default schema
+  // would turn them into JS Date objects and break formatDate/splitEvents.
+  return yaml.load(raw, { schema: yaml.CORE_SCHEMA }) as T;
 }
 
 export const site = load<SiteConfig>('site');
@@ -42,22 +48,31 @@ export const publications = load<{ items: Paper[] }>('publications').items ?? []
 export const workingPapers = load<{ items: Paper[] }>('working-papers').items ?? [];
 export const news = load<{ items: NewsItem[] }>('news').items ?? [];
 export const events = load<{ items: EventItem[] }>('events').items ?? [];
-export const dataCode = load<DataCode>('data-code');
+export const dataTools = load<DataTools>('data-tools');
+export const policy = load<PolicyContent>('policy');
+export const business = load<BusinessContent>('business');
+export const media = load<MediaContent>('media');
+export const research = load<ResearchContent>('research');
 export const partners = load<Partners>('partners');
 export const legal = load<Legal>('legal');
 
 /**
  * Split events into upcoming vs past against the build date.
  * Events without a parseable `date` are treated as past so a malformed entry
- * can never masquerade as an upcoming event.
+ * can never masquerade as an upcoming event — unless the entry explicitly sets
+ * `upcoming: true` (for events whose exact date is not yet known; pair it with
+ * `dateText` so visitors see e.g. "July 2026").
  */
 export function splitEvents(items: EventItem[], now: Date = new Date()) {
   const upcoming: EventItem[] = [];
   const past: EventItem[] = [];
 
   for (const item of items) {
-    const when = item.date ? new Date(item.date) : null;
-    const isUpcoming = when !== null && !Number.isNaN(when.getTime()) && when >= startOfDay(now);
+    const end = item.endDate ?? item.date;
+    const when = end ? new Date(end) : null;
+    const isUpcoming =
+      item.upcoming === true ||
+      (when !== null && !Number.isNaN(when.getTime()) && when >= startOfDay(now));
     (isUpcoming ? upcoming : past).push(item);
   }
 

@@ -4,14 +4,18 @@ import PageHeader from '../components/PageHeader.astro';
 import PersonCard from '../components/PersonCard.astro';
 import Placeholder from '../components/Placeholder.astro';
 import { people, site } from '../lib/content';
+import { href } from '../lib/site';
 
-// Only render groups that actually have members — an empty "Postdocs" heading
-// would imply the center has none, which we don't know.
+// Only render groups that actually have members — an empty group heading would
+// imply the center has none of that role, which we don't know.
 const populated = people.groups.filter((g) => g.members.length > 0);
+
+// The advisory board is a compact list (name – affiliation – field), not bio cards.
+const isCompact = (title: string) => title === 'Academic Advisory Board';
 ---
 
-<Base title="People" description={`Researchers of the ${site.name}.`}>
-  <PageHeader title="People" lede={people.intro} />
+<Base title="People" description={`The people behind ${site.shortName}: researchers, advisors, interns, and core team.`}>
+  <PageHeader title="Our People" lede={people.intro} />
 
   <section class="section">
     <div class="container">
@@ -20,15 +24,37 @@ const populated = people.groups.filter((g) => g.members.length > 0);
           populated.map((group) => (
             <div class="group">
               <h2 class="section-title">{group.title}</h2>
-              <div class="people-grid">
-                {group.members.map((person) => (
-                  <PersonCard person={person} />
-                ))}
-              </div>
+              {group.image && (
+                <img class="group-photo" src={href(group.image)} alt={`${group.title} — group photo`} loading="lazy" />
+              )}
+              {group.intro && <p class="group-intro prose">{group.intro}</p>}
+              {isCompact(group.title) ? (
+                <ul class="board">
+                  {group.members.map((person) => (
+                    <li>
+                      {person.url ? (
+                        <a href={person.url} rel="noopener">
+                          {person.name}
+                        </a>
+                      ) : (
+                        <span class="board-name">{person.name}</span>
+                      )}
+                      {person.affiliation && <span class="muted"> — {person.affiliation}</span>}
+                      {person.role && <span class="board-field"> · {person.role}</span>}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div class="people-grid">
+                  {group.members.map((person) => (
+                    <PersonCard person={person} />
+                  ))}
+                </div>
+              )}
             </div>
           ))
         ) : (
-          <Placeholder note="No members listed yet. Add them to src/data/people.yaml — the file already has the group structure (directors, faculty, postdocs, doctoral, affiliated); groups with no members are hidden." />
+          <Placeholder note="No members listed yet. Add them to src/data/people.yaml; groups with no members are hidden." />
         )
       }
     </div>
@@ -38,11 +64,45 @@ const populated = people.groups.filter((g) => g.members.length > 0);
 <style>
   .group + .group {
     margin-top: var(--space-16);
+    padding-top: var(--space-12);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .group-photo {
+    width: 100%;
+    border-radius: var(--radius);
+    margin-bottom: var(--space-6);
+  }
+
+  .group-intro {
+    margin-bottom: var(--space-8);
+    color: var(--color-text-muted);
   }
 
   .people-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
     gap: var(--space-8);
+  }
+
+  .board {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+  }
+
+  .board-name {
+    font-weight: 500;
+  }
+
+  .board-field {
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 720px) {
+    .people-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

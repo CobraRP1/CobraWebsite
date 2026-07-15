@@ -1,0 +1,49 @@
+# Media page. Content migrated verbatim from the old site's "COBRA Media" page.
+# (The old page repeats its first sentence in two places; kept once here.)
+
+title: Evidence in Public Debate
+
+intro: >-
+  COBRA contributes to public conversations on regulation, taxation, sustainability,
+  disclosure, financial markets, and corporate behavior through research insights,
+  expert commentary, and engagement with media, policy, and industry audiences. The
+  section brings together media coverage, expert perspectives, and accessible
+  research-driven analysis connecting academic research with current economic and
+  regulatory developments.
+
+inTheNews:
+  title: In the News
+  intro: >-
+    Explore recent media coverage, interviews, commentary, and public engagement
+    featuring COBRA researchers and research insights.
+  items:
+    # TODO(Cobra): the old site gives no dates for these items; add them if known.
+    - text: Oliver Spalt, Academic Co-Director covered in the Wall Street Journal
+      link: https://uk.finance.yahoo.com/news/study-finds-investor-bias-against-165900467.html
+      date: null
+    - text: >-
+        Marcel Olbert: Study on taxation of multinational firms in digital economy and
+        the potential reform under OECD Pillar 1 (with Lisa De Simone) covered by
+        Bloomberg (2022)
+      link: https://www.bloomberg.com/professional/insights/regulation/democrats-could-change-corporate-game-with-stock-taxes/
+      date: null
+    - text: Eckhard Janeba, Academic Co-Director was featured in the German newspaper Handelsblatt
+      link: https://www.handelsblatt.com/politik/deutschland/eckhard-janeba-das-generiert-zusaetzliche-unsicherheit/100060504.html
+      date: null
+    - text: Marcel Olbert and Christoph Spengel on AI and university teaching in the German newspaper FAZ
+      link: https://www.faz.net/aktuell/karriere-hochschule/hoersaal/ki-im-studium-wenn-bwl-studenten-nur-mit-ki-eine-eins-schreiben-accg-110854030.html
+      date: null
+
+forJournalists:
+  title: For Journalists
+  intro: >-
+    Connect with COBRA researchers for expert commentary, interviews, research insights,
+    and background discussions on current economic, regulatory, and business
+    developments.
+  listLabel: "Journalists and media professionals can access:"
+  items:
+    - Expert contacts
+    - Faculty biographies and research profiles
+    - Research summaries and explainers
+    - Media-ready insights and commentary
+    - Interview and speaking requests

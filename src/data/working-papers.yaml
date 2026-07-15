@@ -1,16 +1,36 @@
 # Working papers. NEWEST ENTRIES ON TOP.
-#
-# Same rules as publications.yaml: abstracts VERBATIM from SSRN/the working-paper
-# PDF, or null. `outlet` here is the series (e.g. an SSRN working paper series).
-#
-# items:
-#   - title: Working paper title
-#     authors: [Author One, Author Two]
-#     outlet: SSRN Working Paper
-#     year: 2026
-#     abstract: null
-#     link: https://ssrn.com/abstract=...
-#     doi: null
-#     selected: false
+# Same rules as publications.yaml. `insight` = the center's write-up, verbatim from
+# the old site's Research page.
 
-items: []
+items:
+  - title: The Effect of Global Anti-Tax Avoidance Efforts on Sub-National Profit Shifting
+    authors: [Johannes Gaul, Inga Schulz]
+    outlet: Working Paper
+    year: 2026
+    abstract: null # TODO(Cobra): copy verbatim from SSRN if wanted
+    link: http://dx.doi.org/10.2139/ssrn.6351078
+    doi: null
+    selected: true
+    insight:
+      quote: >-
+        Our findings show that international anti-avoidance measures have bite – but
+        firms adapt. Specifically, we document that multinationals most exposed to new
+        reporting requirements significantly expanded their presence in domestic tax
+        havens. This calls for increased awareness at the local level.
+      question: >-
+        This paper asks whether global efforts to curb tax avoidance can shift tax
+        planning from the international to the local level. It focuses on whether
+        multinational firms respond to stricter cross-border rules by making greater use
+        of low-tax municipalities within Germany.
+      analysis: >-
+        The authors study Germany, where local business tax rates differ widely across
+        municipalities. They track whether multinationals most affected by international
+        tax reforms increased their presence in low-tax German municipalities after
+        those reforms were introduced.
+      impact: >-
+        The paper finds that some multinationals did expand their activity in low-tax
+        municipalities after international anti-avoidance rules became stricter. The
+        findings suggest that global tax reforms can have unintended local effects and
+        that tax policy needs coordination across both national and municipal levels.
+      publishedNote: Working Paper available online (05/03/2026)
+      pdf: null

@@ -1,20 +1,82 @@
-# Published papers by center members. NEWEST ENTRIES ON TOP.
+# Published papers featured by the center. NEWEST ENTRIES ON TOP.
 #
 # `selected: true` features a paper on the homepage.
+# `insight` = the center's own research-insight write-up, VERBATIM from the old
+# site's Research page (quote / what the paper asks / analysis / impact). This is
+# NOT the publisher's abstract — `abstract` stays null until someone copies the
+# real abstract verbatim from the publisher.
 #
-# HARD RULE: the abstract must be copied VERBATIM from the publisher or SSRN.
+# HARD RULE: abstracts must be copied VERBATIM from the publisher or SSRN.
 # Never paraphrase, never summarize, never reconstruct one from the title.
-# If you don't have the abstract to hand, leave it null — that is always correct.
-#
-# items:
-#   - title: Exact title as published
-#     authors: [Author One, Author Two]
-#     outlet: Journal of Accounting Research
-#     year: 2026
-#     abstract: >-
-#       Verbatim abstract text.
-#     link: https://doi.org/...
-#     doi: 10.xxxx/xxxxx
-#     selected: true
 
-items: []
+items:
+  - title: The Long-Lasting Effects of Experiencing Communism on Attitudes toward Financial Markets
+    authors: [Christine Laudenbach, Ulrike Malmendier, Alexandra Niessen-Ruenzi]
+    outlet: The Journal of Finance
+    year: 2026
+    abstract: null # TODO(Cobra): copy verbatim from the journal if wanted
+    link: http://dx.doi.org/10.2139/ssrn.5369509
+    doi: null
+    selected: true
+    insight:
+      quote: >-
+        We show that more than three decades after German reunification, the legacy of
+        communism is still visible in people's financial decisions. This implies that
+        attitudes toward capital markets are shaped not only by the economic system in
+        which people live, but also by the personal experiences they associate with that
+        system. More positive memories of communism are associated with more reluctance
+        to invest in stocks even decades later. This can have severely negative
+        consequences for wealth accumulation and retirement savings.
+      question: >-
+        This paper asks whether life under communism still shapes people's attitudes
+        toward financial markets today. Focusing on East and West Germany, it examines
+        whether personal experiences under the GDR continue to influence willingness to
+        invest in stocks.
+      analysis: >-
+        The authors combine survey data with bank and brokerage records to compare
+        investment behavior across East and West Germany. They also study whether people
+        with more positive or more negative memories of life under communism differ in
+        their openness toward stock market investing.
+      impact: >-
+        The study shows that people with experience of communism remain less likely to
+        invest in stocks, even decades after reunification. The findings suggest that
+        political systems can leave long-lasting effects on trust, financial behavior,
+        and household wealth.
+      publishedNote: Published in The Journal of Finance (04/2026)
+      pdf: /assets/research-insight-communism-financial-markets.pdf
+
+  - title: The impact of tax shields on bankruptcy risk and resource allocation
+    authors: [Marcel Olbert]
+    outlet: Review of Accounting Studies
+    year: 2025
+    abstract: null # TODO(Cobra): copy verbatim from Springer if wanted
+    link: https://link.springer.com/article/10.1007/s11142-025-09890-8
+    doi: 10.1007/s11142-025-09890-8
+    selected: true
+    insight:
+      quote: >-
+        My findings suggest that in Europe, at least until 2018, more generous tax loss
+        offset rules helped firms avoid bankruptcy but also decreased efficient capital
+        allocation because market-wide productivity decreased. This is likely because
+        larger firms engaged in tax planning and thereby helped unproductive business
+        units stay alive. So, there is a clear trade-off in tax policy when it comes to
+        loss making firms!
+      question: >-
+        This paper asks how tax rules on past losses affect whether struggling firms
+        survive or go bankrupt. It focuses on what happens when governments make it
+        harder for companies to use earlier losses to reduce future tax payments, and
+        why this may matter especially for firms that are part of larger corporate
+        groups.
+      analysis: >-
+        Using data from firms across 29 European countries, the paper studies how
+        companies were affected when these tax rules became stricter. It also compares
+        standalone firms with firms inside business groups to understand how internal
+        support within groups shapes firm survival.
+      impact: >-
+        The paper shows that stricter rules increase bankruptcy risk, particularly for
+        firms that belong to business groups. At the same time, productivity rises in
+        sectors where many firms carry large past losses. The findings suggest that tax
+        relief can help weak firms survive, but may also slow the shift of resources
+        toward stronger and more productive businesses.
+      publishedNote: Published in Review of Accounting Studies (09/06/2025)
+      pdf: /assets/research-insight-tax-shields.pdf

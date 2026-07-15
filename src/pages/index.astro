@@ -2,19 +2,13 @@
 import Base from '../layouts/Base.astro';
 import NewsEntry from '../components/NewsEntry.astro';
 import EventEntry from '../components/EventEntry.astro';
-import PaperEntry from '../components/PaperEntry.astro';
-import PersonCard from '../components/PersonCard.astro';
 import Placeholder from '../components/Placeholder.astro';
-import { site, about, news, events, people, selectedPapers, splitEvents } from '../lib/content';
+import { site, about, news, events, splitEvents } from '../lib/content';
 import { href } from '../lib/site';
 
 const { upcoming } = splitEvents(events);
-const latestNews = news.slice(0, 4);
+const latestNews = news.slice(0, 3);
 const nextEvents = upcoming.slice(0, 2);
-const featuredPapers = selectedPapers.slice(0, 3);
-
-// Directors first; whoever the first group is, show a few faces on the homepage.
-const teaserPeople = people.groups.flatMap((g) => g.members).slice(0, 4);
 ---
 
 <Base>
@@ -22,15 +16,7 @@ const teaserPeople = people.groups.flatMap((g) => g.members).slice(0, 4);
     <div class="container">
       <p class="eyebrow">{site.name}</p>
       <h1>{site.tagline}</h1>
-      {
-        about.intro ? (
-          <p class="lede prose">{about.intro}</p>
-        ) : (
-          <div class="prose">
-            <Placeholder note="The center's introductory text has not been written yet. Add it as `intro` in src/data/about.yaml — it has to be the center's own wording." />
-          </div>
-        )
-      }
+      <p class="lede prose">{site.description}</p>
       <p class="cta">
         <a href={href('/about/')}>About the center</a>
       </p>
@@ -39,28 +25,27 @@ const teaserPeople = people.groups.flatMap((g) => g.members).slice(0, 4);
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title">Selected research</h2>
-      {
-        featuredPapers.length > 0 ? (
-          <div>
-            {featuredPapers.map((paper) => (
-              <PaperEntry paper={paper} showAbstract={false} />
-            ))}
-            <p class="more">
-              <a href={href('/research/')}>All research →</a>
-            </p>
-          </div>
-        ) : (
-          <Placeholder note="No papers yet. Add entries to src/data/publications.yaml or working-papers.yaml and set `selected: true` to feature them here." />
-        )
-      }
+      <h2 class="section-title">Explore COBRA</h2>
+      <div class="explore-grid">
+        {
+          site.nav.map((item) => (
+            <a class="tile" href={href(item.path)}>
+              {item.image && <img src={href(item.image)} alt="" loading="lazy" />}
+              <div class="tile-text">
+                <h3>{item.label}</h3>
+                {item.blurb && <p class="muted">{item.blurb}</p>}
+              </div>
+            </a>
+          ))
+        }
+      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container two-col">
       <div>
-        <h2 class="section-title">Latest</h2>
+        <h2 class="section-title">In the Spotlight</h2>
         {
           latestNews.length > 0 ? (
             <div>
@@ -97,23 +82,23 @@ const teaserPeople = people.groups.flatMap((g) => g.members).slice(0, 4);
     </div>
   </section>
 
+  <div class="banner">
+    <img src={href('/assets/banner-home.jpg')} alt="" loading="lazy" />
+  </div>
+
   <section class="section">
     <div class="container">
-      <h2 class="section-title">People</h2>
+      <h2 class="section-title">What We Do</h2>
       {
-        teaserPeople.length > 0 ? (
-          <div>
-            <div class="people-grid">
-              {teaserPeople.map((person) => (
-                <PersonCard person={person} />
-              ))}
-            </div>
+        about.intro ? (
+          <div class="prose">
+            <p>{about.intro}</p>
             <p class="more">
-              <a href={href('/people/')}>All people →</a>
+              <a href={href('/about/')}>More about COBRA →</a>
             </p>
           </div>
         ) : (
-          <Placeholder note="No members listed yet. Add them to src/data/people.yaml." />
+          <Placeholder note="Add `intro` in src/data/about.yaml." />
         )
       }
     </div>
@@ -135,7 +120,7 @@ const teaserPeople = people.groups.flatMap((g) => g.members).slice(0, 4);
   }
 
   .hero h1 {
-    max-width: 20ch;
+    max-width: 22ch;
   }
 
   .hero .lede {
@@ -146,16 +131,58 @@ const teaserPeople = people.groups.flatMap((g) => g.members).slice(0, 4);
     margin-top: var(--space-8);
   }
 
+  .explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: var(--space-6);
+  }
+
+  .tile {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: border-color 0.15s ease;
+  }
+
+  .tile:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .tile img {
+    width: 100%;
+    aspect-ratio: 47 / 27;
+    object-fit: cover;
+  }
+
+  .tile-text {
+    padding: var(--space-4) var(--space-6) var(--space-6);
+  }
+
+  .tile h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+  }
+
+  .tile p {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+  }
+
   .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-12);
   }
 
-  .people-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-    gap: var(--space-8);
+  .banner img {
+    width: 100%;
+    display: block;
   }
 
   .more {

@@ -13,7 +13,7 @@ import { news, site } from '../lib/content';
     <div class="container">
       {
         news.length > 0 ? (
-          news.map((item) => <NewsEntry item={item} />)
+          news.map((item) => <NewsEntry item={item} showImages={true} />)
         ) : (
           <Placeholder note="No news yet. Add items to src/data/news.yaml, newest on top. Never guess a date — leave it null and the item renders undated." />
         )
