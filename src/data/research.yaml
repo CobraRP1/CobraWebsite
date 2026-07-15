@@ -1,0 +1,123 @@
+# Research page sections (everything except the paper lists, which live in
+# publications.yaml / working-papers.yaml). Content migrated verbatim from the old
+# site's "COBRA Research" page.
+
+title: Research at the Intersection of Policy, Firms, and Markets
+
+intro:
+  - >-
+    COBRA conducts rigorous, data-driven research on how regulation, disclosure,
+    taxation, and economic policy shape firm behavior, markets, and society. Through
+    empirical analysis, innovative data infrastructure, and interdisciplinary
+    collaboration, the Center connects academic research with real-world policy and
+    business challenges.
+  - >-
+    Our work supports evidence-based policymaking, informed public debate, and a deeper
+    understanding of economic outcomes.
+
+insightsBlurb: >-
+  The COBRA Research Blog provides accessible insights into current research, policy
+  developments, and emerging debates in business, regulation, and economic policy. The
+  blog is designed to make academic research more accessible to policymakers,
+  businesses, journalists, students, and the wider public.
+
+support:
+  title: Research Support
+  intro: >-
+    We are committed to supporting faculty, students, and early-career researchers
+    through funding opportunities, research assistance, academic collaboration and
+    professional development initiatives that foster high-quality, policy-relevant
+    research.
+  items:
+    - title: Grants
+      description: >-
+        Our bi-annual calls for proposals support innovative research projects, academic
+        collaboration, conferences, and new research ideas with real-world relevance. We
+        encourage ambitious, policy-relevant, and interdisciplinary work across COBRA's
+        core research areas.
+    - title: Bid for Research Assistance
+      description: >-
+        Researchers can access dedicated research support for empirical projects,
+        data-driven analysis, and collaborative initiatives. COBRA helps facilitate
+        high-quality research through tailored assistance and close collaboration with
+        research staff and early-career researchers.
+    - title: Awards and Scholarships
+      description: >-
+        COBRA recognises and supports outstanding academic achievement, promising
+        research talent, and innovative scholarship through a range of awards and
+        stipends.
+
+predoc:
+  title: Pre-Doctoral Program & Internships
+  intro: >-
+    COBRA's pre-doctoral research assistant program and internships provide outstanding
+    students and early-career researchers with hands-on experience in rigorous,
+    policy-relevant business research.
+  programTitle: Pre-Doctoral Program
+  programBody: >-
+    Pre-doctoral researchers work closely with faculty on projects exploring taxation,
+    disclosure, sustainability, financial markets, and corporate behavior, while
+    developing strong research skills in preparation for leading PhD programes and
+    research-oriented careers.
+  opportunitiesLabel: "Opportunities include:"
+  opportunities:
+    - Close collaboration with faculty and researchers
+    - Advanced research training and mentorship
+    - Opportunities to engage with international research collaboration
+    - Participation in seminars, workshops, and conferences
+  placementsIntro: >-
+    The launch of COBRA's first pre-doctoral cohort builds on the research team's strong
+    track record in mentoring early career researchers and supporting placements into
+    leading international PhD programs. Examples of successful placements of our
+    research team include:
+  placements:
+    - University of Chicago – Accounting
+    - University of Cambridge – Economics
+    - University of North Carolina – Economics
+    - London Business School – Economics
+    - University of Amsterdam – Finance
+  internshipsTitle: Internships
+  internshipsBody:
+    - >-
+      COBRA internships offer students the opportunity to gain hands-on experience
+      across research, outreach, events, and engagement activities at the intersection
+      of academia, policy, and business.
+    - >-
+      Interns contribute to a wide range of initiatives, from research communication and
+      event support to policy and business engagement, while becoming part of an
+      internationally connected and collaborative research environment. The internships
+      provide valuable insight into how academic research is communicated, shared, and
+      connected to real-world debates and developments.
+  internshipOpportunities:
+    - Involvement in outreach and public engagement activities
+    - Support for events, communications, and research initiatives
+    - Exposure to academic research and policy-relevant business topics
+    - Collaboration with researchers and the wider COBRA team
+
+seminars:
+  title: Academic Seminars & Conferences
+  paragraphs:
+    - >-
+      COBRA hosts seminars, workshops, conferences, and events that bring together
+      researchers, policymakers, and practitioners from around the world.
+    - >-
+      These events foster international academic exchange and create opportunities for
+      discussion on current developments in regulation, taxation, disclosure,
+      sustainability, and corporate behavior.
+    - >-
+      The center's seminar series provides a platform for presenting frontier research
+      and building collaboration across disciplines and institutions.
+
+publicationsBlurb:
+  title: Publications
+  paragraphs:
+    - >-
+      COBRA researchers publish in leading international journals across accounting,
+      finance, economics, and public policy.
+    - >-
+      Our publications explore how firms respond to regulation and economic policy, with
+      a focus on real-world implications for markets, businesses, and society.
+    - >-
+      Alongside academic publications, the center also promotes accessible research
+      summaries and featured insights to support broader engagement with current
+      research.

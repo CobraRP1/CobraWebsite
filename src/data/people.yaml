@@ -1,34 +1,414 @@
-# People / members of the center.
+# People of the center. Content migrated VERBATIM from the old site's People page
+# (bios are the center's own published wording). Group photos migrated from the same
+# page — there are no individual portraits on the old site; `photo: null` on a person
+# renders initials.
 #
-# TODO(Cobra): add the real members. NOTHING here is pre-filled — names, roles,
-# and affiliations are exactly the kind of fact that must never be guessed.
-#
-# Group titles are free text; reorder or rename groups as the center's structure
-# requires. Photos go in public/assets/ and are referenced as /assets/name.jpg
-# (the href() helper adds the base path). `photo: null` renders initials instead.
+# TODO(Cobra): confirm usage rights for the group photos before a public launch
+# (they were published on the center's old page, but confirm the center holds them).
 
-intro: null
+intro: >-
+  COBRA brings together researchers with expertise in corporate behavior, regulation,
+  and empirical economics who share a commitment to understanding how policy shapes
+  real-world business decisions.
 
 groups:
-  - title: Directors
-    members: []
-    # - name: Full Name
-    #   role: Director
-    #   affiliation: University of Mannheim
-    #   photo: /assets/full-name.jpg
-    #   url: https://...
-    #   email: name@uni-mannheim.de
-    #   bio: >-
-    #     One or two sentences.
+  - title: Core Team
+    image: /assets/people-core-team.jpg
+    intro: null
+    members:
+      - name: Marcel Olbert
+        role: Founding and Academic Director
+        affiliation: University of Mannheim
+        photo: null
+        url: https://marcelolbert.com
+        email: null
+        bio: >-
+          Marcel Olbert is Professor of Taxation, Accounting, and Finance at the
+          University of Mannheim. His research examines how corporate taxation and
+          disclosure regulation shape firms' decisions, with a focus on multinational
+          companies and global capital allocation. Marcel regularly publishes in the
+          leading academic journals, has several editorial roles, and is a senior
+          research associate at ZEW and Principal Investigator of the DFG-funded
+          Collaborative Research Center TRR 266 "Accounting for Transparency."
+          Previously at London Business School, he was named as one of Poets&Quants
+          top 40-under-40 MBA professors. When not in research & teaching mode, Marcel
+          gets fulfilling distraction by working out and spending quality time with his
+          family consisting of his wife, three daughters, one dog, and three chickens.
 
-  - title: Faculty
-    members: []
+      - name: Christian Fischer
+        role: Center Manager
+        affiliation: Mannheim Business School
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          As Center Manager at COBRA, Christian Fischer oversees the center's
+          operational infrastructure across events, projects, and administrative
+          processes, supporting the development and delivery of its programs while
+          ensuring smooth day-to-day delivery. He has been with Mannheim Business School
+          for over ten years, contributing extensively in various program management
+          roles. He holds a BSc in Economics from LMU Munich and previously worked in
+          international education and nonprofit contexts. When Christian is not busy
+          keeping COBRA running, he enjoys his additional role as Senior Program Manager
+          for the Mannheim Master in Management Analytics & AI at Mannheim Business
+          School.
 
-  - title: Postdoctoral researchers
-    members: []
+      - name: Trias Kolokitha-Schmitz
+        role: Launch Director
+        affiliation: null
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          Trias Kolokitha-Schmitz is Launch Director at COBRA, where she supports the
+          center's development and overall positioning. She brings extensive experience
+          in research strategy and governance, grant and portfolio management, and
+          international collaboration through her work at London Business School. Trias
+          holds a Dr. phil. and an MA from Leibniz Universität Hannover. She lives in
+          London with her husband, teenage son, and Italian Volpino. Alongside her role
+          in institutional strategy, she works as a certified and accredited coach and
+          breathwork facilitator, informed by her background in social psychology.
 
-  - title: Doctoral researchers
-    members: []
+      - name: Sophie Ockert
+        role: Project Manager
+        affiliation: University of Mannheim
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          Sophie Ockert holds a Bachelor's degree in Culture and Business Studies, with
+          a focus on German Studies and Business Administration, as well as a Master's
+          degree in Philosophy and Business Administration from the University of
+          Mannheim. During her Master's studies, she specialized in social philosophy.
+          Since September 2022, she has been the Area Manager of the Accounting &
+          Taxation Area at the University of Mannheim.
 
-  - title: Affiliated researchers
-    members: []
+  - title: Academic Co-Directors
+    image: /assets/people-academic-co-directors.jpg
+    intro: >-
+      The Center's activities are organized around key thematic pillars coordinated by
+      Academic Co-Directors, who provide strategic and operational guidance, help shape
+      research activities and events, and disseminate Center resources within their
+      respective departments and fields.
+    members:
+      - name: Oliver Spalt
+        role: Academic Co-Director (Finance)
+        affiliation: University of Mannheim
+        photo: null
+        url: https://www.bwl.uni-mannheim.de/en/spalt/team/prof-dr-oliver-spalt/
+        email: null
+        bio: >-
+          Prof. Dr. Oliver G. Spalt is Chair of Financial Markets and Financial
+          Institutions at the University of Mannheim and studies how households, firms,
+          and investors make financial decisions. He has published in all leading
+          finance journals, including the Journal of Finance, the Journal of Financial
+          Economics, and the Review of Financial Studies. He is a Research Member of the
+          European Corporate Governance Institute (ECGI) and a recipient of the
+          prestigious NWO VIDI grant.
+
+      - name: Eckhard Janeba
+        role: Academic Co-Director (Economics)
+        affiliation: University of Mannheim
+        photo: null
+        url: https://www.eckhardjaneba.eu/
+        email: null
+        bio: >-
+          Prof. Dr. Eckhard Janeba is Chair of Public Finance and Economic Policy at the
+          University of Mannheim and specializes in public economics and international
+          taxation. His research focuses on tax competition and the effects of
+          globalization on fiscal policy, and he serves as Chair of the Academic
+          Advisory Board to Germany's Federal Ministry for Economic Affairs and Climate
+          Action.
+
+      - name: Barbara Stage
+        role: Academic Co-Director (Taxation)
+        affiliation: WHU – Otto Beisheim School of Management
+        photo: null
+        url: https://sites.google.com/view/barbarastage
+        email: null
+        bio: >-
+          Prof. Dr. Barbara Stage is Assistant Professor for Financial Accounting and
+          Business Taxation at WHU – Otto Beisheim School of Management. Her research
+          focuses on corporate taxation and tax transparency, studying how disclosure
+          and regulation affect firms' tax planning and behavior.
+
+  - title: Post-Doctoral Researchers
+    image: /assets/people-researchers.jpg
+    intro: >-
+      Early-career researchers supporting the Center's research activities and
+      receiving support for their own work.
+    members:
+      - name: Matti Boie-Wegener
+        role: Post-Doctoral Researcher
+        affiliation: University of Mannheim
+        photo: null
+        url: https://www.uni-goettingen.de/de/649541.html
+        email: null
+        bio: >-
+          Dr. Matti Boie-Wegener is currently a post-doctoral researcher in Accounting
+          and Taxation at the University of Mannheim. He earned his doctorate in
+          Economics from the University of Göttingen and his research focuses on
+          corporate taxation and empirical tax policy.
+
+  - title: PhD Researchers
+    image: null
+    intro: null
+    members:
+      - name: Johannes Gaul
+        role: PhD Researcher
+        affiliation: University of Mannheim and ZEW
+        photo: null
+        url: https://johannesgaul.com/
+        email: null
+        bio: >-
+          Johannes Gaul is a PhD candidate at the University of Mannheim and the ZEW,
+          working at the intersection of accounting, taxation, and public economics. His
+          research uses new data sources and empirical methods to study responses to
+          policy interventions, tax compliance, and economics fraud.
+
+      - name: Jonathan Sattler
+        role: PhD Researcher
+        affiliation: University of Mannheim
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          Jonathan Sattler is a PhD candidate at the University of Mannheim, working on
+          topics related to sustainability reporting, sustainability regulation, and the
+          energy transition. He holds a Bachelor's degree in Industrial Engineering from
+          THM Gießen and a Master's degree in Management from the University of
+          Mannheim. In his research, he also collaborates with Marcel Olbert to study
+          how regulatory frameworks and reporting practices shape corporate behavior in
+          the context of sustainability and energy transformation.
+
+      - name: Carolina Grande
+        role: PhD Researcher
+        affiliation: University of Mannheim
+        photo: null
+        url: https://www.linkedin.com/in/carolina-grande/
+        email: null
+        bio: >-
+          Carolina Grande holds a Master's degree in International Development and
+          Public Policy from Nova School of Business and Economics (NOVA SBE), a
+          postgraduate certificate in Accounting and Tax from the Lisbon School of
+          Economics and Management (ISEG), and a Bachelor's degree in Law from the
+          University of Lisbon (FDUL). She previously worked in tax and fiscal policy
+          consulting at Syntesia and PwC Portugal, and as a research assistant at
+          NOVAFRICA in Mozambique. Her previous work focused on taxation, fiscal policy,
+          and public economics. She will join the Taxation Track at the Center for
+          Doctoral Studies in Business at GESS in September 2026.
+
+  - title: Pre-Doctoral Researchers
+    image: null
+    intro: null
+    members:
+      - name: Juan Camilo Obando
+        role: Pre-Doctoral Researcher
+        affiliation: University of Mannheim
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          Juan Camilo Obando Martínez is a researcher at the University of Mannheim. He
+          holds a Master's degree in Economics and a Bachelor's degree in Physics from
+          Universidad de los Andes. His research focuses on taxation, inequality, and
+          public economics, with an emphasis on using administrative data to study
+          income distribution.
+
+      - name: Chelvi Rodge
+        role: Pre-Doctoral Researcher
+        affiliation: null
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          Chelvi is an empirical researcher with interests in consumer finance,
+          financial discrimination, and social mobility. Chelvi previously served as a
+          Predoc in Finance at the Indian School of Business and holds a Bachelor's and
+          a Master's degree in Economics from BASE University.
+
+      - name: Bao Ky Anna Doan
+        role: Pre-Doctoral Researcher
+        affiliation: University of Mannheim
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          Bao Ky Anna Doan is currently pursuing her Master's degree in the Mannheim
+          Master in Management (MMM) program. Her specialization lies in Accounting and
+          Taxation.
+
+  - title: Affiliated Researchers
+    image: null
+    intro: null
+    members:
+      - name: Jovana Mileusnic
+        role: Affiliated Researcher
+        affiliation: University of Belgrade
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          Jovana Mileusnic is a PhD student at the University of Belgrade. She holds a
+          master's degree in Economics from the same institution. Her research interests
+          lie in applied econometrics and operations research, with a focus on finance
+          and business applications.
+
+      - name: Luca Caprari
+        role: Affiliated Researcher
+        affiliation: University of Mannheim
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          Luca Caprari is a PhD student in Taxation at the University of Mannheim and a
+          researcher at the German Business Panel. He was previously a trainee at the
+          European Central Bank. His research interests lie at the intersection of
+          taxation, AI, and surveys.
+
+  - title: Academic Advisory Board
+    image: /assets/people-advisory-board.jpg
+    intro: >-
+      The Academic Advisory Board advises the Center on its scientific agenda, academic
+      personnel development, and the design of scholarly events and initiatives.
+    members:
+      - name: Matthias Breuer
+        role: Transparency and Disclosure Regulation
+        affiliation: Goethe University Frankfurt
+        photo: null
+        url: https://sites.google.com/view/breuer
+        email: null
+        bio: null
+      - name: Hans Christensen
+        role: Climate, Sustainability, Disclosure Regulation
+        affiliation: University of Chicago Booth School of Business
+        photo: null
+        url: https://www.chicagobooth.edu/faculty/directory/c/hans-b-christensen
+        email: null
+        bio: null
+      - name: Lisa De Simone
+        role: Tax & Transparency
+        affiliation: University of Texas Austin
+        photo: null
+        url: https://sites.google.com/view/lisa-desimone/home
+        email: null
+        bio: null
+      - name: Jonas Heese
+        role: Financial Regulation & Governance
+        affiliation: Harvard Business School
+        photo: null
+        url: https://www.hbs.edu/faculty/Pages/profile.aspx?facId=740159
+        email: null
+        bio: null
+      - name: Jeff Hoopes
+        role: Tax & Transparency
+        affiliation: UNC Chapel Hill
+        photo: null
+        url: https://www.jeffreyhoopes.com/
+        email: null
+        bio: null
+      - name: Simon Jäger
+        role: Public Policy & Labor Economics
+        affiliation: Princeton
+        photo: null
+        url: https://jaeger.scholar.princeton.edu/
+        email: null
+        bio: null
+      - name: Dominika Langenmayr
+        role: Public Economics
+        affiliation: KU Ingolstadt
+        photo: null
+        url: https://www.dominika-langenmayr.net/
+        email: null
+        bio: null
+      - name: Kelvin Law
+        role: Tax, Sustainability & AI
+        affiliation: Nanyang Business School NTU Singapore
+        photo: null
+        url: https://kelvinlaw.me/about.html
+        email: null
+        bio: null
+      - name: Rebecca Lester
+        role: Tax & Subsidy Regulation
+        affiliation: Stanford University
+        photo: null
+        url: https://www.beckylesteracctg.com/
+        email: null
+        bio: null
+      - name: Ludovic Phalippou
+        role: Private Capital Markets
+        affiliation: University of Oxford
+        photo: null
+        url: https://pelaidbare.com/
+        email: null
+        bio: null
+      - name: Nora Pankratz
+        role: Climate & Finance
+        affiliation: University of Toronto
+        photo: null
+        url: https://sites.google.com/view/nora-pankratz/home
+        email: null
+        bio: null
+      - name: Dina Pomeranz
+        role: Public Economics & Development
+        affiliation: University of Zurich
+        photo: null
+        url: https://www.econ.uzh.ch/en/people/faculty/pomeranz.html
+        email: null
+        bio: null
+      - name: Juan Carlos Suárez Serrato
+        role: Public Economics
+        affiliation: Stanford
+        photo: null
+        url: https://www.jcsuarez.com/
+        email: null
+        bio: null
+      - name: Ahmed Tahoun
+        role: Political Economy & Transparency
+        affiliation: London Business School
+        photo: null
+        url: "https://www.london.edu/faculty-and-research/faculty-profiles/t/tahoun-a#research"
+        email: null
+        bio: null
+      - name: Christina Zhu
+        role: Public Markets & Transparency Regulation
+        affiliation: University of Pennsylvania, Wharton
+        photo: null
+        url: https://accounting.wharton.upenn.edu/profile/chrzhu/
+        email: null
+        bio: null
+
+  - title: Interns
+    image: /assets/people-interns.jpg
+    intro: null
+    members:
+      - name: Rebeca Lazo Noriega
+        role: Intern
+        affiliation: University of Mannheim
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          Rebeca Lazo is a Peruvian international student at the University of Mannheim,
+          where she is pursuing a Bachelor's degree in Culture and Economy with a focus
+          on Media and Communication Studies and Business Administration. After
+          obtaining her bilingual International Baccalaureate Diploma, she briefly
+          studied at the University of Lima, where she further deepened her interest in
+          business, media, and communication before continuing her studies in Mannheim.
+          Her academic interests lie at the intersection of communication,
+          entrepreneurship, and the arts, which she complements through practical
+          experience in the start-up and venture capital sectors.
+
+      - name: Dominic Wassermann
+        role: Intern
+        affiliation: null
+        photo: null
+        url: null
+        email: null
+        bio: >-
+          Dominic Wassermann holds a Bachelor's degree in International Management and
+          is currently pursuing a Master's in Management with a focus on Finance. His
+          international academic profile includes semesters abroad in the United States
+          and at ESSEC Business School in Paris. Alongside his studies, he has gained
+          practical experience in financial controlling and consulting at BMW AG and
+          Deloitte.

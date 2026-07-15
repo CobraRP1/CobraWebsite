@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { policy, site } from '../lib/content';
+---
+
+<Base title="Policy" description={`${site.shortName} translates rigorous academic research into accessible insights for policymakers and regulators.`}>
+  <PageHeader title={policy.title} lede={policy.intro} />
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Policy Areas</h2>
+      {policy.areasIntro && <p class="prose intro">{policy.areasIntro}</p>}
+      <div class="areas">
+        {
+          policy.areas.map((area) => (
+            <div class="area">
+              <h3>{area.title}</h3>
+              <p class="muted">{area.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <h2 class="section-title">{policy.insights.title}</h2>
+      {policy.insights.paragraphs.map((p) => <p class="para">{p}</p>)}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <h2 class="section-title">{policy.discuss.title}</h2>
+      <p class="para">{policy.discuss.body}</p>
+      {
+        site.email ? (
+          <p class="para">
+            Get in touch with us via <a href={`mailto:${site.email}`}>{site.email}</a>
+          </p>
+        ) : (
+          <Placeholder note="Contact email pending — the address printed on the old site cannot receive mail (domain typo); the real one goes into site.yaml." />
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro {
+    margin-bottom: var(--space-8);
+  }
+
+  .areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: var(--space-6);
+  }
+
+  .area {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+
+  .area p {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+  }
+
+  .para {
+    margin-top: var(--space-4);
+  }
+
+  .para:first-of-type {
+    margin-top: 0;
+  }
+</style>

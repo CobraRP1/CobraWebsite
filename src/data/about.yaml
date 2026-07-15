@@ -1,27 +1,48 @@
-# About page.
-#
-# TODO(Cobra): everything here is empty on purpose. Claude will not draft a
-# mission statement for a research center out of thin air — the wording has to
-# come from the center. Fill `intro` and `mission` in, then add sections as needed.
-#
-# Each field is plain text (or Markdown-ish prose); `null` renders a visible
-# "Placeholder" box on the page so an empty section is obvious to visitors and
-# can never be mistaken for finished content.
+# About page + homepage hero text.
+# All wording below is VERBATIM from the old site's homepage
+# (What We Do / Who We Serve / Our Impact sections).
 
-intro: null
-# Example once you have the text:
-# intro: >-
-#   Cobra brings together researchers working on ...
+intro: >-
+  COBRA – the Mannheim Center for Corporate Behavior and Regulation Analysis – is based
+  at Mannheim Business School and serves as a leading platform for rigorous, data-driven
+  research on regulation, taxation, financial markets, corporate decision-making, and
+  public policy. The Center provides the infrastructure and programs needed to advance
+  high-impact research, foster academic development, and connect scholarship with
+  practice and policy.
 
-mission: null
+mission: >-
+  We study the real-world effects of regulation and public policy on businesses,
+  markets, and society.
 
-# Add as many as you like; they render in order as sections on /about/.
-sections: []
-# Example:
-# sections:
-#   - title: Research agenda
-#     body: >-
-#       ...
-#   - title: Structure
-#     body: >-
-#       ...
+sections:
+  - title: Our core activities
+    body: null
+    items:
+      - Pre-doctoral research assistant program preparing outstanding candidates for leading PhD placements
+      - Research funding for faculty and students
+      - Academic seminars and visiting scholar programs
+      - Conferences, workshops, and events
+      - Dissemination of research through policy engagement, public outreach, and media communication
+
+  - title: Who We Serve
+    body: >-
+      COBRA works with researchers, students, policymakers, businesses, and media
+      organizations to connect academic research with real-world economic and
+      regulatory questions.
+    items:
+      - "Academics: An international platform for collaborative research and interdisciplinary exchange."
+      - "Students & Early-Career Researchers: Research teaching, mentoring, and hands-on experience that support doctoral placements and academic careers."
+      - "Policymakers: Independent empirical evidence that informs regulatory debates and policy design."
+      - "Businesses: Access to academic expertise, research insights, and emerging analytical talent."
+      - "Journalists: Evidence-based analysis that supports informed reporting and public discussion."
+
+  - title: Our Impact
+    body: >-
+      COBRA strengthens the link between academic research, public policy, and business
+      practice by conducting rigorous empirical evidence, developing the next generation
+      of researchers, and contributing to informed policy and regulatory debate.
+    items:
+      - "Advancing Research Excellence: Supporting internationally recognized, data-driven research on regulation, taxation, transparency, financial markets, and corporate behavior."
+      - "Developing Academic Talent: Equipping early-career researchers for leading doctoral programs and research careers through structured mentoring, academic training, and hands-on research experience."
+      - "Shaping Policy & Practice: Bringing robust empirical evidence into policy discussions, regulatory debates, and public discourse."
+      - "Informing Business & Society: Translating research insights into evidence-based perspectives that support better-informed decisions across business, regulation, and the media."

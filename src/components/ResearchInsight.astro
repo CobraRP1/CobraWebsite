@@ -1,0 +1,115 @@
+---
+/**
+ * A featured "Research Insight" — the center's own accessible write-up of a paper,
+ * migrated verbatim from the old site (quote, what the paper asks, analysis, impact).
+ */
+import type { Paper } from '../lib/types';
+import { href } from '../lib/site';
+
+interface Props {
+  paper: Paper;
+}
+
+const { paper } = Astro.props;
+const insight = paper.insight!;
+const authors = paper.authors?.join(', ') ?? '';
+---
+
+<article class="insight">
+  <h3>{paper.link ? <a href={paper.link} rel="noopener">{paper.title}</a> : paper.title}</h3>
+  {authors && <p class="authors muted">{authors}</p>}
+
+  {insight.quote && <blockquote>“{insight.quote}”</blockquote>}
+
+  {insight.question && <p class="para">{insight.question}</p>}
+
+  {
+    insight.analysis && (
+      <>
+        <h4>Analysis</h4>
+        <p class="para">{insight.analysis}</p>
+      </>
+    )
+  }
+
+  {
+    insight.impact && (
+      <>
+        <h4>Impact</h4>
+        <p class="para">{insight.impact}</p>
+      </>
+    )
+  }
+
+  <p class="links">
+    {
+      insight.publishedNote &&
+        (paper.link ? (
+          <a href={paper.link} rel="noopener">{insight.publishedNote}</a>
+        ) : (
+          insight.publishedNote
+        ))
+    }
+    {insight.pdf && <a class="pdf" href={href(insight.pdf)}>Download insight (PDF)</a>}
+  </p>
+</article>
+
+<style>
+  .insight {
+    padding-block: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    max-width: var(--prose-width);
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+  }
+
+  h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  h3 a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .authors {
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+  }
+
+  blockquote {
+    margin: var(--space-6) 0 0;
+    padding-left: var(--space-4);
+    border-left: 3px solid var(--color-accent);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    line-height: 1.5;
+    color: var(--color-text);
+  }
+
+  h4 {
+    margin-top: var(--space-6);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .para {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+  }
+
+  .links {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    font-size: var(--text-sm);
+  }
+</style>

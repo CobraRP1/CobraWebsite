@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { dataTools, site } from '../lib/content';
+
+const items = dataTools.items ?? [];
+---
+
+<Base title="Data & Tools" description={`Research data infrastructure of ${site.shortName}: dashboards and data access points.`}>
+  <PageHeader title="Data for Evidence-Based Policy" lede={dataTools.intro} />
+
+  <section class="section">
+    <div class="container">
+      {dataTools.note && <p class="coming-soon">{dataTools.note}</p>}
+
+      {
+        items.length > 0 ? (
+          items.map((item) => (
+            <article class="resource">
+              <h2>{item.title}</h2>
+              {item.tagline && <p class="tagline">{item.tagline}</p>}
+              {item.description.split(/\n\s*\n/).map((paragraph) => (
+                <p class="description">{paragraph}</p>
+              ))}
+              {item.access && (
+                <p class="access">
+                  <span class="access-label">Access:</span> {item.access}
+                </p>
+              )}
+              {item.link && (
+                <p class="link">
+                  <a href={item.link} rel="noopener">
+                    Open →
+                  </a>
+                </p>
+              )}
+            </article>
+          ))
+        ) : (
+          <Placeholder note="No datasets or tools listed yet. Add them to src/data/data-tools.yaml." />
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .coming-soon {
+    max-width: var(--prose-width);
+    padding: var(--space-4) var(--space-6);
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-surface);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+  }
+
+  .resource {
+    padding-block: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    max-width: var(--prose-width);
+  }
+
+  .resource h2 {
+    font-size: var(--text-xl);
+  }
+
+  .tagline {
+    margin-top: var(--space-2);
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .description {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  .access {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  .access-label {
+    font-weight: 600;
+  }
+
+  .link {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+  }
+</style>

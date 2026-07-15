@@ -1,0 +1,72 @@
+# Data & Tools page. Content migrated verbatim from the old site's "COBRA Data &
+# Tools" page. Each item: title, optional tagline (the old page's sub-heading),
+# description (paragraphs separated by a blank line), and the access/status line.
+
+intro: >-
+  COBRA develops and maintains research data infrastructure that links economic policy,
+  corporate behavior, and financial markets, helping researchers, policymakers,
+  journalists, and analysts generate evidence for better-informed debate.
+
+note: >-
+  Coming soon: This infrastructure is under active development. Upcoming releases will
+  include interactive dashboards, researcher access points, and documentation for
+  working with policy, firm-level, disclosure, and tax transparency data.
+
+items:
+  - title: Economic Policy Tracker (EPT)
+    tagline: >-
+      The Economic Policy Tracker (EPT) is COBRA's Flagship Database for Policy Insights
+      and Impactful Research
+    description: |-
+      The Economic Policy Tracker is intended to become a high-frequency, news-based
+      database that measures economic policy and regulation alongside public perception
+      and corporate responses. Drawing on the Financial Times and other leading business
+      and policy outlets, it quantifies the real-time policy environment at a daily
+      frequency.
+
+      The EPT is built to serve two purposes: a research engine for new work across
+      accounting, finance, public economics, and political economy, and a public
+      evidence hub showing which policy domains matter, when, and how much.
+    access: >-
+      Public dashboard, free to use. Raw data free to researchers on request. In
+      development.
+    link: null
+
+  - title: Orbis Research Infrastructure
+    tagline: null
+    description: |-
+      The University of Mannheim holds the most comprehensive version of Orbis, the
+      largest database of corporate ownership structures and financial reporting data,
+      covering more than 400 million entities worldwide. COBRA cleans and hosts this raw
+      data as a one-stop resource for Mannheim researchers, and uses it as the
+      firm-level backbone connecting the EPT and other datasets to firm outcomes.
+    access: >-
+      Licensed via the University of Mannheim — available to Mannheim-affiliated
+      researchers and their co-authors.
+    link: null
+
+  - title: Textual Firm-level Reporting Data
+    tagline: null
+    description: |-
+      In partnership with financialreports.eu, COBRA hosts a large-scale collection of
+      firm-level textual disclosure data: more than 40,000 listed issuers, over 20
+      million indexed filings, and 56 languages, primarily annual reports with a focus
+      on Europe and substantial global depth. It is built to connect — linking to
+      earnings calls, financial data from Orbis and Compustat, and the EPT — so
+      researchers can study disclosure data alongside firm behavior and related economic
+      outcomes.
+    access: >-
+      Available to Mannheim-affiliated researchers and their co-authors. Aggregated
+      insights shared publicly through COBRA's outreach.
+    link: null
+
+  - title: Public Country-by-Country Reporting Repository
+    tagline: null
+    description: |-
+      In cooperation with ZEW, COBRA is building a public repository of multinational
+      firms' country-by-country reporting (CbCR) data — a novel form of regulatory tax
+      transparency disclosure at global scale, with public filings beginning in 2025.
+    access: >-
+      Public dashboard planned, with large-scale data available to researchers on
+      request. In development.
+    link: null

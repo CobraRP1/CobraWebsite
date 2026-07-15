@@ -2,48 +2,174 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import PaperEntry from '../components/PaperEntry.astro';
+import ResearchInsight from '../components/ResearchInsight.astro';
 import Placeholder from '../components/Placeholder.astro';
-import { publications, workingPapers, site } from '../lib/content';
+import { publications, workingPapers, research, site } from '../lib/content';
 
-const nothing = publications.length === 0 && workingPapers.length === 0;
+const insightPapers = [...publications, ...workingPapers].filter((p) => p.insight);
+const { support, predoc, seminars, publicationsBlurb } = research;
 ---
 
-<Base title="Research" description={`Publications and working papers of the ${site.name}.`}>
-  <PageHeader title="Research" />
+<Base title="Research" description={`${site.shortName} research on how regulation, disclosure, taxation, and economic policy shape firm behavior.`}>
+  <PageHeader title={research.title} lede={research.intro[0]} />
 
-  {
-    nothing && (
-      <section class="section">
-        <div class="container">
-          <Placeholder note="No papers yet. Add entries to src/data/publications.yaml and src/data/working-papers.yaml, newest first. Abstracts must be copied verbatim from the publisher or SSRN — never paraphrased." />
-        </div>
-      </section>
-    )
-  }
+  <section class="section">
+    <div class="container prose">
+      {research.intro.slice(1).map((p) => <p>{p}</p>)}
+    </div>
+  </section>
 
-  {
-    publications.length > 0 && (
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Publications</h2>
-          {publications.map((paper) => (
-            <PaperEntry paper={paper} />
-          ))}
-        </div>
-      </section>
-    )
-  }
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Research Insights</h2>
+      {research.insightsBlurb && <p class="prose blurb">{research.insightsBlurb}</p>}
+      {
+        insightPapers.length > 0 ? (
+          insightPapers.map((paper) => <ResearchInsight paper={paper} />)
+        ) : (
+          <Placeholder note="No research insights yet. Add papers with an `insight` block to src/data/publications.yaml or working-papers.yaml." />
+        )
+      }
+    </div>
+  </section>
 
-  {
-    workingPapers.length > 0 && (
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Working papers</h2>
-          {workingPapers.map((paper) => (
-            <PaperEntry paper={paper} />
-          ))}
-        </div>
-      </section>
-    )
-  }
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">{support.title}</h2>
+      {support.intro && <p class="prose blurb">{support.intro}</p>}
+      <div class="support-grid">
+        {
+          support.items.map((item) => (
+            <div class="support-item">
+              <h3>{item.title}</h3>
+              <p class="muted">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <h2 class="section-title">{predoc.title}</h2>
+      {predoc.intro && <p class="para">{predoc.intro}</p>}
+
+      <h3 class="sub">{predoc.programTitle}</h3>
+      <p class="para">{predoc.programBody}</p>
+      <p class="list-label">{predoc.opportunitiesLabel}</p>
+      <ul class="bullets">
+        {predoc.opportunities.map((o) => <li>{o}</li>)}
+      </ul>
+      {predoc.placementsIntro && <p class="para">{predoc.placementsIntro}</p>}
+      <ul class="bullets">
+        {predoc.placements.map((p) => <li>{p}</li>)}
+      </ul>
+
+      <h3 class="sub">{predoc.internshipsTitle}</h3>
+      {predoc.internshipsBody.map((p) => <p class="para">{p}</p>)}
+      <p class="list-label">{predoc.opportunitiesLabel}</p>
+      <ul class="bullets">
+        {predoc.internshipOpportunities.map((o) => <li>{o}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <h2 class="section-title">{seminars.title}</h2>
+      {seminars.paragraphs.map((p) => <p class="para">{p}</p>)}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">{publicationsBlurb.title}</h2>
+      <div class="prose">
+        {publicationsBlurb.paragraphs.map((p) => <p class="para">{p}</p>)}
+      </div>
+
+      {
+        publications.length > 0 && (
+          <div class="papers">
+            <h3 class="papers-title">Published papers</h3>
+            {publications.map((paper) => (
+              <PaperEntry paper={paper} />
+            ))}
+          </div>
+        )
+      }
+
+      {
+        workingPapers.length > 0 && (
+          <div class="papers">
+            <h3 class="papers-title">Working papers</h3>
+            {workingPapers.map((paper) => (
+              <PaperEntry paper={paper} />
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
 </Base>
+
+<style>
+  .blurb {
+    margin-bottom: var(--space-8);
+  }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: var(--space-6);
+  }
+
+  .support-item {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+
+  .support-item p {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+  }
+
+  .para {
+    margin-top: var(--space-4);
+  }
+
+  .sub {
+    margin-top: var(--space-8);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+  }
+
+  .list-label {
+    margin-top: var(--space-4);
+    font-weight: 600;
+    font-size: var(--text-sm);
+  }
+
+  .bullets {
+    margin-top: var(--space-3);
+    padding-left: 1.2em;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+  }
+
+  .papers {
+    margin-top: var(--space-12);
+  }
+
+  .papers-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+</style>

@@ -2,15 +2,15 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Placeholder from '../components/Placeholder.astro';
-import { about, partners, site } from '../lib/content';
+import { about, partners } from '../lib/content';
 import { href } from '../lib/site';
 
 const hasPartners = partners.partners.length > 0;
 const hasFunders = partners.funders.length > 0;
 ---
 
-<Base title="About" description={`About ${site.name}.`}>
-  <PageHeader title="About" lede={about.intro} />
+<Base title="About" description={about.intro ?? undefined}>
+  <PageHeader title="What We Do" lede={about.intro} />
 
   <section class="section">
     <div class="container prose stack">
@@ -21,22 +21,18 @@ const hasFunders = partners.funders.length > 0;
       }
 
       {
-        about.mission ? (
-          <>
-            <h2>Mission</h2>
-            <p>{about.mission}</p>
-          </>
-        ) : (
-          <Placeholder note="Mission statement missing — add `mission` in src/data/about.yaml. This has to be the center's own wording." />
-        )
-      }
-
-      {
         about.sections.map((section) => (
-          <>
+          <div class="about-section">
             <h2>{section.title}</h2>
-            <p>{section.body}</p>
-          </>
+            {section.body && <p>{section.body}</p>}
+            {section.items && section.items.length > 0 && (
+              <ul class="bullets">
+                {section.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
         ))
       }
     </div>
@@ -104,6 +100,25 @@ const hasFunders = partners.funders.length > 0;
 </Base>
 
 <style>
+  .about-section + .about-section {
+    margin-top: var(--space-8);
+  }
+
+  .about-section h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .bullets {
+    margin-top: var(--space-3);
+    padding-left: 1.2em;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+  }
+
   .group + .group {
     margin-top: var(--space-8);
   }

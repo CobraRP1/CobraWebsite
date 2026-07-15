@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { media, site } from '../lib/content';
+import { formatDate } from '../lib/content';
+---
+
+<Base title="Media" description={`Media coverage and expert perspectives from ${site.shortName} researchers.`}>
+  <PageHeader title={media.title} lede={media.intro} />
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">{media.inTheNews.title}</h2>
+      {media.inTheNews.intro && <p class="prose intro">{media.inTheNews.intro}</p>}
+      {
+        media.inTheNews.items.length > 0 ? (
+          <ul class="news-list">
+            {media.inTheNews.items.map((item) => (
+              <li>
+                {item.link ? (
+                  <a href={item.link} rel="noopener">
+                    {item.text} ↗
+                  </a>
+                ) : (
+                  item.text
+                )}
+                {item.date && <span class="muted date"> ({formatDate(item.date)})</span>}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <Placeholder note="No media items yet. Add them to src/data/media.yaml." />
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <h2 class="section-title">{media.forJournalists.title}</h2>
+      {media.forJournalists.intro && <p class="para">{media.forJournalists.intro}</p>}
+      <p class="list-label">{media.forJournalists.listLabel}</p>
+      <ul class="bullets">
+        {media.forJournalists.items.map((item) => <li>{item}</li>)}
+      </ul>
+      {
+        site.email ? (
+          <p class="para">
+            Contact us via <a href={`mailto:${site.email}`}>{site.email}</a>
+          </p>
+        ) : (
+          <Placeholder note="Contact email pending — see site.yaml." />
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro {
+    margin-bottom: var(--space-8);
+  }
+
+  .news-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-list li {
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    max-width: var(--prose-width);
+  }
+
+  .news-list a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .news-list a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .date {
+    font-size: var(--text-sm);
+  }
+
+  .para {
+    margin-top: var(--space-4);
+  }
+
+  .para:first-of-type {
+    margin-top: 0;
+  }
+
+  .list-label {
+    margin-top: var(--space-6);
+    font-weight: 600;
+    font-size: var(--text-sm);
+  }
+
+  .bullets {
+    margin-top: var(--space-3);
+    padding-left: 1.2em;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+  }
+</style>

@@ -1,21 +1,66 @@
-# Conferences, workshops, and seminar series hosted by the center.
+# Conferences, workshops, and seminars. Text migrated verbatim from the old site's
+# Events page.
 #
-# The page splits these into "Upcoming" and "Past" automatically by comparing
-# `date` to the build date — you do not maintain that split by hand. An entry
-# with `date: null` counts as past, so a malformed date can never fake an
-# upcoming event.
-#
-# TODO(Cobra): add the center's events, including the launch event if you want
-# it listed. Dates must be real — never approximate one.
-#
-# items:
-#   - date: 2026-09-15          # YYYY-MM-DD
-#     endDate: 2026-09-16       # null for single-day events
-#     title: Event title
-#     kind: Conference          # Conference | Workshop | Seminar | Lecture ...
-#     location: Mannheim
-#     description: >-
-#       One or two sentences.
-#     link: https://...
+# The page splits into "Upcoming" and "Past" by comparing `date` to the build date.
+# `upcoming: true` forces an entry into Upcoming when its exact date is not yet known
+# (pair it with `dateText` so visitors see e.g. "July 2026" instead of a fake date).
 
-items: []
+items:
+  - date: null # TODO(Cobra): exact dates of the Summer School are not on the old page
+    endDate: null
+    dateText: July 2026
+    upcoming: true
+    title: COBRA Summer School on Empirical Tax Research
+    kind: Summer School
+    location: null
+    note: fully booked
+    description: >-
+      In July, COBRA will host its first Summer School on Empirical Tax Research,
+      bringing together PhD students and early-career scholars for an intensive academic
+      program focused on current questions and methods in taxation research. The program
+      combines methodological training, exposure to frontier research, and discussions
+      of tax systems as empirical settings, while also creating space for exchange,
+      networking, and participants' own research development.
+
+
+      Through lectures, research pitches, and feedback sessions, the Summer School will
+      reflect COBRA's commitment to fostering rigorous, internationally connected
+      research with strong academic relevance and impact.
+    image: /assets/event-summer-school.jpg
+    link: null
+    materials: []
+    recordings: []
+
+  - date: 2026-05-20
+    endDate: 2026-05-26
+    dateText: null
+    upcoming: false
+    title: AI & Code Clinic for Research and Teaching
+    kind: Workshop series
+    location: null
+    note: null
+    description: >-
+      In May, COBRA hosted the first edition of its AI and Code Clinic for Research and
+      Teaching, two workshops designed for faculty and researchers interested in the use
+      of AI in empirical research. Across two sessions, participants explored how AI
+      agents such as Claude Code can support the research process, discussed practical
+      applications and common pitfalls, and were introduced to new data infrastructure
+      for the research community. The series offered a hands-on forum for learning,
+      exchange, and experimentation, reflecting COBRA's commitment to advancing
+      innovative and methodologically rigorous research.
+    image: null
+    link: null
+    materials:
+      - label: Presentations Session I (May 20)
+        file: /assets/ai-clinic-session-1-2026-05-20.zip
+      - label: Presentations Session II (May 26)
+        file: /assets/ai-clinic-session-2-2026-05-26.zip
+    recordings:
+      - label: "Session I: Philipp Doerrenberg & Marcel Olbert"
+        url: https://youtu.be/oM5APLGWJgI
+      - label: "Session I: Marcel Olbert"
+        url: https://youtu.be/vXxPKYxoMig
+      - label: "Session I: Paul Seidel"
+        url: https://youtu.be/NfPhumi3K18
+      - label: "Session II: Complete video"
+        url: https://youtu.be/edwHb-dyBPA

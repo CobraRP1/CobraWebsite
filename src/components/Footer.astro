@@ -63,6 +63,13 @@ const socialLinks = Object.entries(site.social)
         )
       }
       <ul class="legal">
+        {
+          site.secondaryNav.map((item) => (
+            <li>
+              <a href={href(item.path)}>{item.label}</a>
+            </li>
+          ))
+        }
         <li><a href={href('/impressum/')}>Impressum</a></li>
         <li><a href={href('/datenschutz/')}>Datenschutz</a></li>
       </ul>

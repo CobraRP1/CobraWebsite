@@ -1,0 +1,46 @@
+# Policy page. Content migrated verbatim from the old site's "COBRA Policy" page.
+
+title: Translating Research into Policy Insight
+
+intro: >-
+  COBRA translates rigorous academic research into accessible insights for
+  policymakers, regulators, and broader public debate. Our research helps policymakers
+  better understand how businesses respond to regulatory change and how those responses
+  influence competition, investment, transparency, and economic outcomes. By connecting
+  academic research with real-world policy challenges, COBRA supports evidence-based
+  policymaking, regulatory analysis, international policy discussions, and
+  public-sector dialogue.
+
+areasIntro: >-
+  COBRA conducts policy-relevant research across a range of topics at the intersection
+  of regulation, markets, corporate behavior, and economic policy.
+
+areas:
+  - title: Taxation & Transparency
+    description: Research on tax policy, disclosure requirements, and corporate transparency
+  - title: ESG & Sustainability Policy
+    description: Understanding the effects of sustainability regulation and ESG disclosure on firms and markets
+  - title: Financial Markets & Regulation
+    description: Research on how disclosure rules and regulatory changes shape market behavior and investment decisions
+  - title: Multinational Firms & Global Policy
+    description: Insights into international taxation, reporting standards, and cross-border business activity
+  - title: Corporate Governance & Accountability
+    description: Research on governance structures, incentives, and regulatory oversight
+
+insights:
+  title: Policy Insights
+  paragraphs:
+    - >-
+      This section features policy-relevant research and expert perspectives aimed at
+      supporting informed public debate and evidence-based policymaking.
+    - >-
+      Explore research summaries, commentary on current development in regulation,
+      taxation, and economic policy.
+
+discuss:
+  title: Discuss a Policy Issue
+  body: >-
+    From multinational taxation to corporate transparency and financial market
+    regulation, policymakers today face increasingly complex regulatory challenges with
+    far-reaching economic consequences. Our work helps policymakers better understand
+    the economic and behavioral effects of regulatory change.

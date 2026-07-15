@@ -1,4 +1,4 @@
-# Maintaining the Cobra website
+# Maintaining the COBRA website
 
 Everything on the site comes from the YAML files in `src/data/`. Editing the site means editing
 those files — you never have to touch the page code. This file is the recipe book.
@@ -47,7 +47,9 @@ items:
 
 - **The abstract must be copied verbatim.** Don't summarize it, don't rewrite it. If you don't
   have it in front of you, write `abstract: null` — that's always the right answer.
-- `selected: true` puts the paper in the homepage "Selected research" band (max 3 shown).
+- To feature a paper in the "Research Insights" section, add an `insight:` block
+  (quote / question / analysis / impact / publishedNote / pdf) — see the existing entries
+  for the shape. Insight PDFs go in `public/assets/`.
 - Optionally add a line to `news.yaml` announcing it.
 
 ## Add a person
@@ -80,16 +82,41 @@ never move an event by hand:
 items:
   - date: 2026-09-15        # YYYY-MM-DD
     endDate: 2026-09-16     # null for a single-day event
-    title: Cobra Annual Conference
+    title: COBRA Annual Conference
     kind: Conference
     location: Mannheim
+    note: null              # short flag next to the title, e.g. "fully booked"
     description: >-
       One or two sentences.
+    image: null             # optional photo in public/assets/
     link: https://...
+    materials: []           # slides etc. — self-host the files in public/assets/
+    recordings: []          # video links (YouTube etc.) — links only, NEVER embeds
 ```
 
-Note: the split happens when the site is *built*. An event that has just passed still shows as
-upcoming until the next push. Any push (or a manual run from the Actions tab) refreshes it.
+- If the exact date isn't fixed yet, use `date: null`, `upcoming: true`, and
+  `dateText: "July 2026"` — the event shows under Upcoming with that text. Remove the
+  override once the real date exists (or once it's past).
+- `materials` files must be **self-hosted** (`public/assets/`), not linked from another
+  server. `recordings` stay external links — no embeds, ever (GDPR).
+- The split happens when the site is *built*. An event that has just passed still shows as
+  upcoming until the next push. Any push (or a manual run from the Actions tab) refreshes it.
+
+## Add a media mention ("In the News")
+
+`src/data/media.yaml` → `inTheNews.items`, newest on top:
+
+```yaml
+    - text: Jane Doe on tax transparency in the Financial Times
+      link: https://www.ft.com/...
+      date: 2026-08          # or null if unknown — never guess
+```
+
+## Add a dataset or tool
+
+`src/data/data-tools.yaml` → `items`. Fields: `title`, optional `tagline`, `description`
+(paragraphs separated by a blank line — use `|-`), `access` (who can use it, status), and
+optional `link` (dashboard/repository URL when live).
 
 ## Add news
 
