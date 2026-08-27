@@ -51,7 +51,10 @@
   --space-16: 4rem;
   --space-24: 6rem;
 
-  --content-width: 68rem;
+  /* Widened from 68rem so the empty side margins on wide monitors are roughly
+     halved (the exact ratio depends on viewport width). Long-form text stays
+     readable via the narrower --prose-width below. */
+  --content-width: 84rem;
   --prose-width: 42rem;
   --radius: 3px;
 }
