@@ -93,6 +93,8 @@ img {
 /* ---- Base -------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
+  /* Keep in-page anchor targets clear of the sticky header. */
+  scroll-padding-top: 6rem;
 }
 
 body {
