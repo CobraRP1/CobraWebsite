@@ -103,7 +103,8 @@ if (sameAs.length > 0) jsonLd.sameAs = sameAs;
     </a>
 
     <script>
-      // Show the "back to the top" button only after the page is scrolled down.
+      // Show the "back to the top" button only after the page is scrolled down,
+      // and scroll to the very top when it's clicked.
       const backToTop = document.querySelector('.back-to-top');
       if (backToTop) {
         const THRESHOLD = 400; // px scrolled before the button appears
@@ -111,6 +112,14 @@ if (sameAs.length > 0) jsonLd.sameAs = sameAs;
           backToTop.classList.toggle('is-visible', window.scrollY > THRESHOLD);
         update(); // handle reloads that start part-way down the page
         window.addEventListener('scroll', update, { passive: true });
+
+        // Explicit scroll-to-top: a plain #top anchor is a no-op here because the
+        // sticky header is already pinned at the viewport top.
+        backToTop.addEventListener('click', (event) => {
+          event.preventDefault();
+          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        });
       }
     </script>
 
