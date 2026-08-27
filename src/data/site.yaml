@@ -29,9 +29,9 @@ address: null
 # see the Impressum notes in legal.yaml.)
 parentOrganization: Mannheim Business School
 
-# TODO(Cobra): official logo not yet available (needs CD assets); text wordmark
-# renders until this points at a file in public/assets/.
-logo: null
+# Official COBRA logo (wordmark + subtext, no MBS branding). Shown in the header
+# in place of the text wordmark. Source: "COBRA logo PNG.png", trimmed/optimized.
+logo: /assets/cobra-logo.png
 
 # TODO(Cobra): a dedicated 1200x630 share image. Until then, pages share with no image.
 ogImage: null

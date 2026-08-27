@@ -9,10 +9,10 @@ const current = Astro.url.pathname;
   <div class="container header-inner">
     <a class="wordmark" href={href('/')}>
       {
-        /* TODO(Cobra): once the official logo is in public/assets/ and set in
-           site.yaml, this renders the image instead of the text wordmark. */
+        /* Official COBRA logo (wordmark + subtext). Falls back to the text
+           wordmark below if site.logo is null. */
         site.logo ? (
-          <img src={href(site.logo)} alt={site.name} height="40" />
+          <img class="logo-img" src={href(site.logo)} alt={site.name} width="720" height="384" />
         ) : (
           <span class="wordmark-text">
             <span class="wordmark-short">{site.shortName}</span>
@@ -59,6 +59,12 @@ const current = Astro.url.pathname;
   .wordmark {
     color: var(--color-text);
     text-decoration: none;
+    display: inline-flex;
+  }
+
+  .logo-img {
+    height: 62px;
+    width: auto;
   }
 
   .wordmark-text {
@@ -111,6 +117,10 @@ const current = Astro.url.pathname;
 
     .wordmark-long {
       display: none;
+    }
+
+    .logo-img {
+      height: 48px;
     }
 
     nav ul {
