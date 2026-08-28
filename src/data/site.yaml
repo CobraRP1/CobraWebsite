@@ -48,6 +48,19 @@ nav:
     path: /research/
     blurb: Explore our research, academic programs, publications and early-career opportunities.
     image: /assets/section-research.jpg
+    # Hover dropdown in the header; each item jumps to a section on /research/.
+    # The paths must match the section ids in src/pages/research.astro.
+    submenu:
+      - label: Research Insights
+        path: /research/#research-insights
+      - label: Research Support
+        path: /research/#research-support
+      - label: Pre-Doctoral Program & Internships
+        path: /research/#predoctoral
+      - label: Academic Seminars & Conferences
+        path: /research/#seminars
+      - label: Publications
+        path: /research/#publications
   - label: Policy
     path: /policy/
     blurb: Discover our policy insights and opportunities to discuss emerging policy issues with us.

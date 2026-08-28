@@ -40,6 +40,8 @@ export interface NavItem {
   blurb?: string | null;
   /** Tile image on the homepage "Explore" grid. */
   image?: string | null;
+  /** Header hover dropdown; items typically link to anchors on the target page. */
+  submenu?: NavItem[];
 }
 
 export interface About {

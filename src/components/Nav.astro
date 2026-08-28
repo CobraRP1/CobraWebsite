@@ -26,13 +26,39 @@ const current = Astro.url.pathname;
       <ul>
         {
           site.nav.map((item) => (
-            <li>
+            <li class={item.submenu ? 'has-submenu' : undefined}>
               <a
                 href={href(item.path)}
                 aria-current={isActive(item.path, current) ? 'page' : undefined}
+                aria-haspopup={item.submenu ? 'true' : undefined}
               >
                 {item.label}
+                {item.submenu && (
+                  <svg
+                    class="caret"
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                )}
               </a>
+              {item.submenu && (
+                <ul class="submenu">
+                  {item.submenu.map((sub) => (
+                    <li>
+                      <a href={href(sub.path)}>{sub.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))
         }
@@ -40,6 +66,41 @@ const current = Astro.url.pathname;
     </nav>
   </div>
 </header>
+
+<script>
+  // Touch devices have no hover: make the parent nav item toggle its dropdown
+  // on tap instead of navigating. On devices with hover (desktop), the link
+  // navigates normally and CSS handles the hover menu.
+  const tapMode = window.matchMedia('(hover: none)');
+
+  const closeAll = (except: Element | null) => {
+    document.querySelectorAll('.has-submenu.is-open').forEach((li) => {
+      if (li === except) return;
+      li.classList.remove('is-open');
+      li.querySelector(':scope > a')?.setAttribute('aria-expanded', 'false');
+    });
+  };
+
+  document.querySelectorAll('.has-submenu').forEach((li) => {
+    const link = li.querySelector(':scope > a');
+    if (!link) return;
+    link.addEventListener('click', (event) => {
+      if (!tapMode.matches) return; // desktop: follow the link
+      event.preventDefault();
+      const open = li.classList.toggle('is-open');
+      link.setAttribute('aria-expanded', open ? 'true' : 'false');
+      closeAll(li);
+    });
+  });
+
+  // Tap outside an open menu closes it.
+  document.addEventListener('click', (event) => {
+    if (!tapMode.matches) return;
+    if (!(event.target instanceof Element) || !event.target.closest('.has-submenu')) {
+      closeAll(null);
+    }
+  });
+</script>
 
 <style>
   .site-header {
@@ -114,6 +175,88 @@ const current = Astro.url.pathname;
     border-bottom-color: var(--color-accent);
   }
 
+  /* ---- Hover dropdown -------------------------------------------- */
+  .has-submenu {
+    position: relative;
+  }
+
+  .has-submenu > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+  }
+
+  .caret {
+    transition: transform 0.15s ease;
+  }
+
+  .has-submenu.is-open .caret {
+    transform: rotate(180deg);
+  }
+
+  @media (hover: hover) {
+    .has-submenu:hover .caret,
+    .has-submenu:focus-within .caret {
+      transform: rotate(180deg);
+    }
+  }
+
+  .submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 20;
+    min-width: 14rem;
+    margin: 0;
+    padding: var(--space-2);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    /* Hidden until the parent item is hovered or focused. */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease,
+      visibility 0.15s;
+  }
+
+  /* Shown via tap on touch devices (JS toggles .is-open)… */
+  .has-submenu.is-open > .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  /* …and via hover / keyboard focus on devices that actually have hover. */
+  @media (hover: hover) {
+    .has-submenu:hover > .submenu,
+    .has-submenu:focus-within > .submenu {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+  }
+
+  .submenu a {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    border-bottom: none;
+    border-radius: calc(var(--radius) - 1px);
+    white-space: nowrap;
+    color: var(--color-text-muted);
+  }
+
+  .submenu a:hover {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
   @media (max-width: 720px) {
     .header-inner {
       gap: var(--space-4);
@@ -129,6 +272,25 @@ const current = Astro.url.pathname;
 
     nav ul {
       gap: var(--space-4);
+    }
+
+    /* Touch: tapping "Research" toggles a full-width panel below the header
+       (JS adds .is-open). Anchor it to the header, not the individual item. */
+    .has-submenu {
+      position: static;
+    }
+
+    .submenu {
+      left: 0;
+      right: 0;
+      min-width: 0;
+      border-left: none;
+      border-right: none;
+      border-radius: 0;
+    }
+
+    .submenu a {
+      white-space: normal;
     }
   }
 </style>
