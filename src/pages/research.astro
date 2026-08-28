@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHeader from '../components/PageHeader.astro';
 import PaperEntry from '../components/PaperEntry.astro';
 import ResearchInsight from '../components/ResearchInsight.astro';
 import Placeholder from '../components/Placeholder.astro';
@@ -11,13 +10,16 @@ const { support, predoc, seminars, publicationsBlurb } = research;
 ---
 
 <Base title="Research" description={`${site.shortName} research on how regulation, disclosure, taxation, and economic policy shape firm behavior.`}>
-  <PageHeader title={research.title} lede={research.intro[0]} />
-
-  <section class="section">
-    <div class="container prose">
-      {research.intro.slice(1).map((p) => <p>{p}</p>)}
+  <div class="page-header">
+    <div class="container">
+      <h1>{research.title}</h1>
+      {/* No prose cap -> intro spans the same width as the headline. Both intro
+          paragraphs sit directly under the headline, separated by a blank line. */}
+      <p class="lede">{research.intro[0]}</p>
+      {/* Same font/size as the first paragraph (.lede); MBS CD dark blue instead of muted. */}
+      {research.intro.slice(1).map((paragraph) => <p class="lede intro-dark">{paragraph}</p>)}
     </div>
-  </section>
+  </div>
 
   <section class="section">
     <div class="container">
@@ -115,6 +117,10 @@ const { support, predoc, seminars, publicationsBlurb } = research;
 </Base>
 
 <style>
+  .intro-dark {
+    color: var(--color-primary-dark);
+  }
+
   .blurb {
     margin-bottom: var(--space-8);
   }

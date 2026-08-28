@@ -23,6 +23,9 @@
   --color-accent-hover: #1d2f3a;
   --color-border: #e2e0da;
   --color-border-strong: #c9c6bd;
+  /* Official MBS corporate-design dark blue (RGB 0/48/86, Pantone 654, RAL 5011),
+     from "MBS Stylesheet Aktualisierung" (Stand März 2021). */
+  --color-primary-dark: #003056;
 
   /* ---- Type ------------------------------------------------------- */
   --font-display: 'Source Serif 4 Variable', Georgia, serif;

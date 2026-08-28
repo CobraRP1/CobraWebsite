@@ -20,6 +20,12 @@ pnpm-debug.log*
 # contact details, registrar/DNS notes, and private file paths, and this repo is public.
 MarcelOlbert.md
 
+# Local build resources: brand/CD material, styleguides, brandbooks, source files
+# etc. that help build the site but must NEVER be published or committed (this repo
+# is public). Drop such files in resources/. The whole folder is ignored — nothing
+# inside it is ever tracked or deployed. See CLAUDE.md ("Local resources").
+resources/
+
 # editor / OS
 .DS_Store
 Thumbs.db

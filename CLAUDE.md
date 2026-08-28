@@ -30,6 +30,15 @@ center starts updating this one directly.
 - Node 24 installed system-wide via winget. If `node` isn't found, restart the terminal.
 - YAML is loaded with `CORE_SCHEMA` so `2026-05-20` stays a string — don't remove that.
 
+## Local resources (never committed)
+
+Brand/CD material used to build the site but that must NOT be published lives in the
+**`resources/`** folder, which is **gitignored** (see `.gitignore`). Nothing in it is tracked
+or deployed. Current contents: `MBS Stylesheet Aktualisierung.pdf` (official MBS corporate-design
+colour/type sheet, März 2021 — source of the dark blue `--color-primary-dark: #003056`).
+**Never put internal documents in `public/`** — everything under `public/` is served publicly.
+Move only files that are meant to be public into `public/assets/`.
+
 ## Navigation
 
 Top-level nav = the old site's 7 "Explore COBRA" sections, same order:
