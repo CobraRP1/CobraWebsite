@@ -83,6 +83,9 @@ export interface PaperInsight {
   publishedNote: string | null;
   /** Self-hosted one-pager PDF, if the old site offered one. */
   pdf: string | null;
+  /** Self-hosted round author photo(s) composite (from the old site), or null. */
+  authorsImage?: string | null;
+  authorsImageAlt?: string | null;
 }
 
 export interface Paper {

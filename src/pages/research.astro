@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PaperEntry from '../components/PaperEntry.astro';
-import ResearchInsight from '../components/ResearchInsight.astro';
+import InsightsCarousel from '../components/InsightsCarousel.astro';
 import Placeholder from '../components/Placeholder.astro';
 import { publications, workingPapers, research, site } from '../lib/content';
 
@@ -27,7 +27,7 @@ const { support, predoc, seminars, publicationsBlurb } = research;
       {research.insightsBlurb && <p class="blurb">{research.insightsBlurb}</p>}
       {
         insightPapers.length > 0 ? (
-          insightPapers.map((paper) => <ResearchInsight paper={paper} />)
+          <InsightsCarousel papers={insightPapers} />
         ) : (
           <Placeholder note="No research insights yet. Add papers with an `insight` block to src/data/publications.yaml or working-papers.yaml." />
         )

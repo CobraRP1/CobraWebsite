@@ -9,13 +9,18 @@ the domain). Keep it in sync when workflows change.
 
 ## Why this site exists (context)
 
-COBRA's original web presence is embedded in the Mannheim Business School site:
-https://www.mannheim-business-school.com/de/the-mannheim-experience/faculty-research/cobra-mannheim-center-for-corporate-behavior-and-regulation-analysis/
+COBRA's original web presence is embedded in the Mannheim Business School site
+(reference / content template — **do not republish this material publicly**):
+- DE: https://www.mannheim-business-school.com/de/the-mannheim-experience/faculty-research/cobra-mannheim-center-for-corporate-behavior-and-regulation-analysis/
+- EN: https://www.mannheim-business-school.com/en/the-mannheim-experience/faculty-research/cobra-mannheim-center-for-corporate-behavior-and-regulation-analysis/
+
 The center wants its **own site with its own top-level navigation** instead of living
 under MBS's information architecture. **All content on this site was migrated from those
 old pages in July 2026** (text verbatim from the raw HTML; images, ZIPs, and insight PDFs
 downloaded and self-hosted). The old site remains the content source of record until the
-center starts updating this one directly.
+center starts updating this one directly. The research page's "Research Insights" are shown
+as an auto-advancing slideshow (`InsightsCarousel.astro`) mirroring the old EN research page,
+with the round author photos (`/assets/author-*.jpg`) pulled from that page.
 
 ## Stack & operations
 

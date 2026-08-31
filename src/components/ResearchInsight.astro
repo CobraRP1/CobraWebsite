@@ -16,6 +16,16 @@ const authors = paper.authors?.join(', ') ?? '';
 ---
 
 <article class="insight">
+  {
+    insight.authorsImage && (
+      <img
+        class="authors-photo"
+        src={href(insight.authorsImage)}
+        alt={insight.authorsImageAlt ?? authors}
+        loading="lazy"
+      />
+    )
+  }
   <h3>{paper.link ? <a href={paper.link} rel="noopener">{paper.title}</a> : paper.title}</h3>
   {authors && <p class="authors muted">{authors}</p>}
 
@@ -45,20 +55,33 @@ const authors = paper.authors?.join(', ') ?? '';
     {
       insight.publishedNote &&
         (paper.link ? (
-          <a href={paper.link} rel="noopener">{insight.publishedNote}</a>
+          <a href={paper.link} rel="noopener">{insight.publishedNote} ↗</a>
         ) : (
           insight.publishedNote
         ))
     }
-    {insight.pdf && <a class="pdf" href={href(insight.pdf)}>Download insight (PDF)</a>}
+    {
+      insight.pdf && (
+        <a class="pdf" href={href(insight.pdf)} target="_blank" rel="noopener">
+          View / download insight (PDF)
+        </a>
+      )
+    }
   </p>
 </article>
 
 <style>
   .insight {
-    padding-block: var(--space-8);
-    border-bottom: 1px solid var(--color-border);
     max-width: var(--prose-width);
+    margin-inline: auto;
+  }
+
+  .authors-photo {
+    display: block;
+    height: 96px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto var(--space-6);
   }
 
   h3 {

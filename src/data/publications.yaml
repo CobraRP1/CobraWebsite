@@ -44,6 +44,8 @@ items:
         and household wealth.
       publishedNote: Published in The Journal of Finance (04/2026)
       pdf: /assets/research-insight-communism-financial-markets.pdf
+      authorsImage: /assets/author-communism.jpg
+      authorsImageAlt: Christine Laudenbach, Ulrike Malmendier and Alexandra Niessen-Ruenzi
 
   - title: The impact of tax shields on bankruptcy risk and resource allocation
     authors: [Marcel Olbert]
@@ -80,3 +82,5 @@ items:
         toward stronger and more productive businesses.
       publishedNote: Published in Review of Accounting Studies (09/06/2025)
       pdf: /assets/research-insight-tax-shields.pdf
+      authorsImage: /assets/author-tax-shields.jpg
+      authorsImageAlt: Marcel Olbert

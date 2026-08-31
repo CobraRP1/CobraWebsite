@@ -1,0 +1,178 @@
+---
+/**
+ * Auto-advancing slideshow of Research Insights, with clickable dots.
+ * Each slide is a full ResearchInsight (author photo, write-up, and the paper
+ * link + PDF), so links and PDF change together with the slide.
+ */
+import type { Paper } from '../lib/types';
+import ResearchInsight from './ResearchInsight.astro';
+
+interface Props {
+  papers: Paper[];
+}
+
+const { papers } = Astro.props;
+---
+
+<div
+  class="insights-carousel"
+  role="region"
+  aria-roledescription="carousel"
+  aria-label="Research insights"
+>
+  <div class="slides">
+    {
+      papers.map((paper, i) => (
+        <div
+          class:list={['slide', { 'is-active': i === 0 }]}
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${i + 1} of ${papers.length}`}
+          aria-hidden={i !== 0 ? 'true' : undefined}
+        >
+          <ResearchInsight paper={paper} />
+        </div>
+      ))
+    }
+  </div>
+
+  {
+    papers.length > 1 && (
+      <div class="dots">
+        {papers.map((_, i) => (
+          <button
+            type="button"
+            class:list={['dot', { 'is-active': i === 0 }]}
+            data-goto={i}
+            aria-label={`Show insight ${i + 1}`}
+            aria-current={i === 0 ? 'true' : undefined}
+          />
+        ))}
+      </div>
+    )
+  }
+</div>
+
+<script>
+  document.querySelectorAll('.insights-carousel').forEach((carousel) => {
+    const slides = Array.from(carousel.querySelectorAll('.slide'));
+    const dots = Array.from(carousel.querySelectorAll('.dot'));
+    if (slides.length < 2) return;
+
+    const INTERVAL = 7000;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let current = 0;
+    let timer: number | null = null;
+
+    const show = (index: number) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, k) => {
+        const active = k === current;
+        slide.classList.toggle('is-active', active);
+        if (active) slide.removeAttribute('aria-hidden');
+        else slide.setAttribute('aria-hidden', 'true');
+      });
+      dots.forEach((dot, k) => {
+        const active = k === current;
+        dot.classList.toggle('is-active', active);
+        if (active) dot.setAttribute('aria-current', 'true');
+        else dot.removeAttribute('aria-current');
+      });
+    };
+
+    const stop = () => {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    };
+    const start = () => {
+      if (!reduce && timer === null) {
+        timer = window.setInterval(() => show(current + 1), INTERVAL);
+      }
+    };
+
+    dots.forEach((dot, k) =>
+      dot.addEventListener('click', () => {
+        show(k);
+        stop();
+        start();
+      })
+    );
+
+    // Pause while the visitor is reading (hover / keyboard focus) or the tab is hidden.
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+    carousel.addEventListener('focusin', stop);
+    carousel.addEventListener('focusout', start);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+
+    start();
+  });
+</script>
+
+<style>
+  .insights-carousel {
+    max-width: 56rem;
+    margin-inline: auto;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-8) var(--space-6) var(--space-6);
+  }
+
+  /* All slides share one grid cell, so the carousel keeps the height of the
+     tallest slide — advancing crossfades without any layout jump. */
+  .slides {
+    display: grid;
+  }
+
+  .slide {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-8);
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-border-strong);
+    cursor: pointer;
+    transition:
+      background 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  .dot:hover {
+    background: var(--color-text-muted);
+  }
+
+  .dot.is-active {
+    background: var(--color-accent);
+    transform: scale(1.25);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide {
+      transition: none;
+    }
+  }
+</style>
