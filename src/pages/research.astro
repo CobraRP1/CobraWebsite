@@ -113,17 +113,6 @@ const { support, predoc, seminars, publicationsBlurb } = research;
       </div>
 
       {
-        publications.length > 0 && (
-          <div class="papers">
-            <h3 class="papers-title">Published papers</h3>
-            {publications.map((paper) => (
-              <PaperEntry paper={paper} />
-            ))}
-          </div>
-        )
-      }
-
-      {
         workingPapers.length > 0 && (
           <div class="papers">
             <h3 class="papers-title">Working papers</h3>
