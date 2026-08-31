@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import PaperEntry from '../components/PaperEntry.astro';
 import InsightsCarousel from '../components/InsightsCarousel.astro';
 import Placeholder from '../components/Placeholder.astro';
 import { publications, workingPapers, research, site } from '../lib/content';
@@ -111,17 +110,6 @@ const { support, predoc, seminars, publicationsBlurb } = research;
       <div>
         {publicationsBlurb.paragraphs.map((p) => <p class="para">{p}</p>)}
       </div>
-
-      {
-        workingPapers.length > 0 && (
-          <div class="papers">
-            <h3 class="papers-title">Working papers</h3>
-            {workingPapers.map((paper) => (
-              <PaperEntry paper={paper} />
-            ))}
-          </div>
-        )
-      }
     </div>
   </section>
 </Base>
@@ -241,13 +229,4 @@ const { support, predoc, seminars, publicationsBlurb } = research;
     font-size: var(--text-sm);
   }
 
-  .papers {
-    margin-top: var(--space-12);
-  }
-
-  .papers-title {
-    font-family: var(--font-display);
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-2);
-  }
 </style>
