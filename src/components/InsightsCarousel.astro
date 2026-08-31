@@ -1,8 +1,8 @@
 ---
 /**
- * Auto-advancing slideshow of Research Insights, with clickable dots.
- * Each slide is a full ResearchInsight (author photo, write-up, and the paper
- * link + PDF), so links and PDF change together with the slide.
+ * Auto-advancing slideshow of Research Insights, with prev/next arrows beside the
+ * box and clickable dots below it. Each slide is a full ResearchInsight (author
+ * photo, write-up, and the paper link + PDF), so links and PDF change with the slide.
  */
 import type { Paper } from '../lib/types';
 import ResearchInsight from './ResearchInsight.astro';
@@ -12,32 +12,77 @@ interface Props {
 }
 
 const { papers } = Astro.props;
+const multiple = papers.length > 1;
 ---
 
-<div
-  class="insights-carousel"
-  role="region"
-  aria-roledescription="carousel"
-  aria-label="Research insights"
->
-  <div class="slides">
+<div class="carousel-outer">
+  <div class="carousel-wrap">
     {
-      papers.map((paper, i) => (
-        <div
-          class:list={['slide', { 'is-active': i === 0 }]}
-          role="group"
-          aria-roledescription="slide"
-          aria-label={`${i + 1} of ${papers.length}`}
-          aria-hidden={i !== 0 ? 'true' : undefined}
-        >
-          <ResearchInsight paper={paper} />
-        </div>
-      ))
+      multiple && (
+        <button type="button" class="arrow arrow-prev" aria-label="Previous insight">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+      )
+    }
+
+    <div
+      class="insights-carousel"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Research insights"
+    >
+      <div class="slides">
+        {
+          papers.map((paper, i) => (
+            <div
+              class:list={['slide', { 'is-active': i === 0 }]}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${i + 1} of ${papers.length}`}
+              aria-hidden={i !== 0 ? 'true' : undefined}
+            >
+              <ResearchInsight paper={paper} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    {
+      multiple && (
+        <button type="button" class="arrow arrow-next" aria-label="Next insight">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      )
     }
   </div>
 
   {
-    papers.length > 1 && (
+    multiple && (
       <div class="dots">
         {papers.map((_, i) => (
           <button
@@ -56,8 +101,12 @@ const { papers } = Astro.props;
 <script>
   document.querySelectorAll('.insights-carousel').forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll('.slide'));
-    const dots = Array.from(carousel.querySelectorAll('.dot'));
     if (slides.length < 2) return;
+
+    const outer = carousel.closest('.carousel-outer') ?? carousel;
+    const dots = Array.from(outer.querySelectorAll('.dot'));
+    const prevBtn = outer.querySelector('.arrow-prev');
+    const nextBtn = outer.querySelector('.arrow-next');
 
     const INTERVAL = 7000;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -91,20 +140,21 @@ const { papers } = Astro.props;
         timer = window.setInterval(() => show(current + 1), INTERVAL);
       }
     };
+    const goto = (index: number) => {
+      show(index);
+      stop();
+      start();
+    };
 
-    dots.forEach((dot, k) =>
-      dot.addEventListener('click', () => {
-        show(k);
-        stop();
-        start();
-      })
-    );
+    dots.forEach((dot, k) => dot.addEventListener('click', () => goto(k)));
+    prevBtn?.addEventListener('click', () => goto(current - 1));
+    nextBtn?.addEventListener('click', () => goto(current + 1));
 
     // Pause while the visitor is reading (hover / keyboard focus) or the tab is hidden.
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-    carousel.addEventListener('focusin', stop);
-    carousel.addEventListener('focusout', start);
+    outer.addEventListener('mouseenter', stop);
+    outer.addEventListener('mouseleave', start);
+    outer.addEventListener('focusin', stop);
+    outer.addEventListener('focusout', start);
     document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
 
     start();
@@ -112,13 +162,52 @@ const { papers } = Astro.props;
 </script>
 
 <style>
-  .insights-carousel {
-    max-width: 56rem;
+  .carousel-outer {
+    max-width: 64rem;
     margin-inline: auto;
+  }
+
+  .carousel-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .insights-carousel {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 56rem;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
-    padding: var(--space-8) var(--space-6) var(--space-6);
+    padding: var(--space-8) var(--space-6);
+  }
+
+  /* Small, transparent rectangular prev/next boxes, vertically centred beside
+     the slideshow. */
+  .arrow {
+    flex: 0 0 auto;
+    width: 2rem;
+    height: 3.25rem;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .arrow:hover {
+    color: var(--color-text);
+    border-color: var(--color-border-strong);
+    background: rgba(0, 0, 0, 0.02);
   }
 
   /* All slides share one grid cell, so the carousel keeps the height of the
@@ -141,11 +230,12 @@ const { papers } = Astro.props;
     pointer-events: auto;
   }
 
+  /* Dots sit below the box now, centred. */
   .dots {
     display: flex;
     justify-content: center;
     gap: var(--space-2);
-    margin-top: var(--space-8);
+    margin-top: var(--space-6);
   }
 
   .dot {
@@ -168,6 +258,17 @@ const { papers } = Astro.props;
   .dot.is-active {
     background: var(--color-accent);
     transform: scale(1.25);
+  }
+
+  @media (max-width: 640px) {
+    .carousel-wrap {
+      gap: var(--space-1);
+    }
+
+    .arrow {
+      width: 1.6rem;
+      height: 2.75rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
