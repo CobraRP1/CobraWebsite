@@ -44,10 +44,28 @@ export interface NavItem {
   submenu?: NavItem[];
 }
 
+export interface AboutCard {
+  term: string;
+  description: string;
+}
+
+export interface AboutSection {
+  /** Anchor id; must match the About dropdown paths in site.yaml. */
+  id: string;
+  title: string;
+  paragraphs: string[];
+  /** Label above a plain bullet list, e.g. "Its core activities include:". */
+  listLabel?: string | null;
+  bullets?: string[];
+  /** Term + description items rendered as cards. */
+  cards?: AboutCard[];
+}
+
 export interface About {
+  /** Homepage "What We Do" teaser. */
   intro: string | null;
-  mission: string | null;
-  sections: { title: string; body: string | null; items?: string[] }[];
+  hero: { title: string; intro: string };
+  sections: AboutSection[];
 }
 
 export interface Person {

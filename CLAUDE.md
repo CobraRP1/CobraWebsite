@@ -46,10 +46,11 @@ Move only files that are meant to be public into `public/assets/`.
 
 ## Navigation
 
-Top-level nav = the old site's 7 "Explore COBRA" sections, same order:
-**Data & Tools · Research · Policy · Business · Media · Events · People**.
-About and News sit in `secondaryNav` (footer only); their content also feeds the homepage
-("What We Do", "In the Spotlight").
+Top-level nav: **About** + the old site's 7 "Explore COBRA" sections, in order:
+**About · Data & Tools · Research · Policy · Business · Media · Events · People**.
+About (first) and Research have a hover/tap **dropdown** (`submenu` in `site.yaml`) that jumps to
+anchored sections on their page. The homepage "Explore" grid only shows nav items that have a tile
+`image` (the 7 sections), so About is excluded there. **News** stays in `secondaryNav` (footer).
 
 ## Content model (`src/data/`)
 

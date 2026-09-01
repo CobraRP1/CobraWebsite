@@ -1,112 +1,74 @@
 ---
 import Base from '../layouts/Base.astro';
-import PageHeader from '../components/PageHeader.astro';
-import Placeholder from '../components/Placeholder.astro';
-import { about, partners } from '../lib/content';
-import { href } from '../lib/site';
-
-const hasPartners = partners.partners.length > 0;
-const hasFunders = partners.funders.length > 0;
+import { about } from '../lib/content';
 ---
 
-<Base title="About" description={about.intro ?? undefined}>
-  <PageHeader title="What We Do" lede={about.intro} />
-
-  <section class="section">
-    <div class="container prose stack">
-      {
-        !about.intro && (
-          <Placeholder note="Introductory text missing — add `intro` in src/data/about.yaml." />
-        )
-      }
-
-      {
-        about.sections.map((section) => (
-          <div class="about-section">
-            <h2>{section.title}</h2>
-            {section.body && <p>{section.body}</p>}
-            {section.items && section.items.length > 0 && (
-              <ul class="bullets">
-                {section.items.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="section">
+<Base title="About" description={about.hero.intro}>
+  <div class="page-header">
     <div class="container">
-      <h2 class="section-title">Partners &amp; funding</h2>
-
-      {partners.intro && <p class="prose">{partners.intro}</p>}
-
-      {
-        !hasPartners && !hasFunders && (
-          <Placeholder note="No partners or funders listed yet — add them in src/data/partners.yaml. Copy funding statements in the wording the funder requires." />
-        )
-      }
-
-      {
-        hasPartners && (
-          <div class="group">
-            <h3>Partners</h3>
-            <ul class="org-list">
-              {partners.partners.map((p) => (
-                <li>
-                  {p.logo ? (
-                    <img src={href(p.logo)} alt={p.name} loading="lazy" />
-                  ) : p.url ? (
-                    <a href={p.url} rel="noopener">
-                      {p.name}
-                    </a>
-                  ) : (
-                    <span>{p.name}</span>
-                  )}
-                  {p.note && <span class="note muted">{p.note}</span>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-      }
-
-      {
-        hasFunders && (
-          <div class="group">
-            <h3>Funding</h3>
-            <ul class="org-list">
-              {partners.funders.map((f) => (
-                <li>
-                  {f.url ? (
-                    <a href={f.url} rel="noopener">
-                      {f.name}
-                    </a>
-                  ) : (
-                    <span>{f.name}</span>
-                  )}
-                  {f.note && <span class="note muted">{f.note}</span>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-      }
+      <h1>{about.hero.title}</h1>
+      <p class="lede">{about.hero.intro}</p>
     </div>
-  </section>
+  </div>
+
+  {
+    about.sections.map((section) => (
+      <section class="section" id={section.id}>
+        <div class="container">
+          <h2 class="subsection-title">{section.title}</h2>
+
+          {section.paragraphs.map((paragraph) => (
+            <p class="para">{paragraph}</p>
+          ))}
+
+          {section.listLabel && <p class="list-label">{section.listLabel}</p>}
+
+          {section.bullets && section.bullets.length > 0 && (
+            <ul class="bullets">
+              {section.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+          )}
+
+          {section.cards && section.cards.length > 0 && (
+            <div class="card-grid">
+              {section.cards.map((card) => (
+                <div class="info-card">
+                  <h3>{card.term}</h3>
+                  <p>{card.description}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    ))
+  }
 </Base>
 
 <style>
-  .about-section + .about-section {
-    margin-top: var(--space-8);
+  /* Prominent subsection headings — same as the Research page. */
+  .subsection-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-bottom: var(--space-6);
   }
 
-  .about-section h2 {
-    font-size: var(--text-xl);
-    margin-bottom: var(--space-3);
+  .para {
+    margin-top: var(--space-4);
+  }
+
+  .list-label {
+    margin-top: var(--space-6);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
   }
 
   .bullets {
@@ -119,28 +81,32 @@ const hasFunders = partners.funders.length > 0;
     font-size: var(--text-sm);
   }
 
-  .group + .group {
+  /* Term + description items as centred white cards (like Research Support). */
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-6);
     margin-top: var(--space-8);
   }
 
-  .group h3 {
-    margin-bottom: var(--space-4);
+  .info-card {
+    flex: 0 1 20rem;
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
   }
 
-  .org-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-6);
-    align-items: center;
+  .info-card h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
   }
 
-  .org-list img {
-    max-height: 48px;
-    width: auto;
-  }
-
-  .note {
+  .info-card p {
+    margin-top: var(--space-2);
     font-size: var(--text-sm);
-    margin-left: var(--space-2);
+    color: var(--color-text-muted);
   }
 </style>

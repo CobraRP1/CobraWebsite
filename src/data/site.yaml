@@ -40,6 +40,17 @@ ogImage: null
 # `blurb` = the tile text from the old homepage (verbatim); `image` = the migrated
 # tile image. Both feed the homepage "Explore" grid.
 nav:
+  # About is a top-level entry (no tile image, so it is not shown in the homepage
+  # "Explore" grid). Its dropdown jumps to the sections on /about/.
+  - label: About
+    path: /about/
+    submenu:
+      - label: What we do
+        path: /about/#what-we-do
+      - label: Who we serve
+        path: /about/#who-we-serve
+      - label: Our impact
+        path: /about/#our-impact
   - label: Data & Tools
     path: /data-tools/
     blurb: Find dashboards and data access points here.
@@ -82,10 +93,9 @@ nav:
     blurb: Meet the people behind COBRA, our researchers, advisors, interns, and core team.
     image: /assets/section-people.jpg
 
-# Pages outside the 7 main sections; rendered in the footer.
+# Pages outside the main sections; rendered in the footer.
+# (About moved into the main nav; News stays here.)
 secondaryNav:
-  - label: About
-    path: /about/
   - label: News
     path: /news/
 

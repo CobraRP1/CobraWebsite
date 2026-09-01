@@ -28,7 +28,9 @@ const nextEvents = upcoming.slice(0, 2);
       <h2 class="section-title">Explore COBRA</h2>
       <div class="explore-grid">
         {
-          site.nav.map((item) => (
+          site.nav
+            .filter((item) => item.image)
+            .map((item) => (
             <a class="tile" href={href(item.path)}>
               {item.image && <img src={href(item.image)} alt="" loading="lazy" />}
               <div class="tile-text">
