@@ -44,6 +44,10 @@ nav:
   # "Explore" grid). Its dropdown jumps to the sections on /about/.
   - label: About
     path: /about/
+    blurb: Learn about the center — what we do, who we serve, and our impact.
+    # TODO(Cobra): section-about.jpg is a Claude-made stand-in in the tile style
+    # (no official About tile exists yet). Swap in an official graphic when available.
+    image: /assets/section-about.jpg
     submenu:
       - label: What we do
         path: /about/#what-we-do

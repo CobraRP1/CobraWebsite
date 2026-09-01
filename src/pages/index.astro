@@ -135,8 +135,21 @@ const nextEvents = upcoming.slice(0, 2);
 
   .explore-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    /* 4 columns: the 8 tiles form 4×2 (About first, Business starts row 2). */
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-6);
+  }
+
+  @media (max-width: 900px) {
+    .explore-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .explore-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .tile {
