@@ -45,8 +45,10 @@ nav:
   - label: About
     path: /about/
     blurb: Learn about the center — what we do, who we serve, and our impact.
-    # TODO(Cobra): section-about.jpg is a Claude-made stand-in in the tile style
-    # (no official About tile exists yet). Swap in an official graphic when available.
+    # section-about.jpg: the old site has no About tile, so this was reconstructed
+    # from the real section tiles — their shared map/network background recovered by
+    # per-pixel lighten-compositing the seven, with "About" set in the tile style.
+    # TODO(Cobra): swap in an official tile if the design team makes one.
     image: /assets/section-about.jpg
     submenu:
       - label: What we do
